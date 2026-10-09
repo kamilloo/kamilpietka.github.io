@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polityka prywatności — Moja Biblioteka</title>
+    <meta name="description" content="Polityka prywatności aplikacji Moja Biblioteka.">
+    <meta name="robots" content="index,follow">
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0d1117;
+            --panel: #161b22;
+            --text: #e6edf3;
+            --muted: #8b949e;
+            --border: #30363d;
+            --link: #58a6ff;
+            --accent: #f0f6fc;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; background: var(--bg); color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+                BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.7;
+        }
+        .container { width: min(900px, calc(100% - 32px)); margin: 0 auto; }
+        header { border-bottom: 1px solid var(--border); padding: 22px 0; }
+        header .container {
+            display: flex; justify-content: space-between; align-items: center;
+            gap: 20px;
+        }
+        .brand { color: var(--accent); font-weight: 700; text-decoration: none; }
+        nav { display: flex; flex-wrap: wrap; gap: 18px; }
+        nav a, a { color: var(--link); text-decoration: none; }
+        nav a:hover, a:hover { text-decoration: underline; }
+        main { padding: 64px 0 80px; }
+        h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; margin: 0 0 12px; }
+        h2 { margin-top: 42px; color: var(--accent); font-size: 1.35rem; }
+        .subtitle { color: var(--muted); margin-bottom: 42px; }
+        .notice {
+            margin: 28px 0; padding: 18px 20px; background: var(--panel);
+            border: 1px solid var(--border); border-radius: 10px;
+        }
+        li { margin: 7px 0; }
+        footer {
+            border-top: 1px solid var(--border); color: var(--muted);
+            padding: 28px 0 40px; font-size: 0.9rem;
+        }
+        @media (max-width: 650px) {
+            header .container { display: block; }
+            nav { margin-top: 14px; }
+            main { padding-top: 40px; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <a class="brand" href="/">Kamil Piętka</a>
+        <nav aria-label="Dokumenty Moja Biblioteka">
+            <a href="/mojabiblioteka/privacy/">Prywatność</a>
+            <a href="/mojabiblioteka/terms/">Regulamin</a>
+            <a href="/mojabiblioteka/returns/">Zwroty</a>
+        </nav>
+    </div>
+</header>
+<main>
+    <article class="container">
+        <h1>Polityka prywatności aplikacji Moja Biblioteka</h1>
+        <p class="subtitle">Ostatnia aktualizacja: 9 października 2026 r.</p>
+
+        <div class="notice">
+            Moja Biblioteka została zaprojektowana jako aplikacja lokalna.
+            Podstawowe dane dotyczące biblioteki użytkownika są przechowywane na jego urządzeniu.
+        </div>
+
+        <h2>1. Administrator danych</h2>
+        <p>Administratorem danych osobowych przetwarzanych w związku z funkcjami wymagającymi przekazania danych Administratorowi jest:</p>
+        <p>
+            <strong>Kamil Piętka</strong><br>
+            E-mail: <a href="mailto:phpdevondemand@gmail.com">phpdevondemand@gmail.com</a>
+        </p>
+        <p>Jeżeli sprzedaż prowadzona jest w ramach działalności gospodarczej, dane przedsiębiorcy, w tym adres i NIP, zostaną uzupełnione w niniejszym dokumencie przed uruchomieniem sprzedaży.</p>
+
+        <h2>2. Dane biblioteki przechowywane lokalnie</h2>
+        <p>Aplikacja Moja Biblioteka umożliwia przechowywanie informacji dotyczących prywatnego księgozbioru użytkownika.</p>
+        <ul>
+            <li>tytuły i autorów książek,</li>
+            <li>numery ISBN,</li>
+            <li>informacje o wydaniu książki,</li>
+            <li>notatki użytkownika,</li>
+            <li>informacje o wypożyczeniach,</li>
+            <li>imiona, nazwy lub oznaczenia osób wpisane przez użytkownika przy ewidencji wypożyczeń.</li>
+        </ul>
+        <p>Dane te są co do zasady przechowywane lokalnie na urządzeniu użytkownika i nie są automatycznie przesyłane Administratorowi.</p>
+        <p>Usunięcie danych aplikacji albo jej odinstalowanie może prowadzić do usunięcia lokalnie zapisanych informacji.</p>
+
+        <h2>3. Aparat i skanowanie kodów ISBN</h2>
+        <p>Aplikacja może poprosić o dostęp do aparatu urządzenia w celu skanowania kodów kreskowych oraz numerów ISBN książek.</p>
+        <p>Obraz z aparatu używany do rozpoznania kodu nie jest celowo zapisywany ani przesyłany Administratorowi.</p>
+        <p>Użytkownik może wyłączyć dostęp do aparatu w ustawieniach systemowych urządzenia.</p>
+
+        <h2>4. Pobieranie informacji o książkach</h2>
+        <p>Aplikacja może korzystać z zewnętrznych usług, w szczególności Open Library, w celu pobierania publicznie dostępnych informacji o książkach na podstawie numeru ISBN.</p>
+        <p>W takim przypadku do zewnętrznej usługi może zostać przesłany numer ISBN oraz standardowe informacje techniczne związane z połączeniem internetowym, takie jak adres IP.</p>
+        <p>Zewnętrzni dostawcy przetwarzają informacje zgodnie z własnymi zasadami prywatności.</p>
+
+        <h2>5. Dane związane z zamówieniami</h2>
+        <p>Jeżeli w aplikacji dostępne są funkcje zakupowe, podczas składania zamówienia mogą być przetwarzane:</p>
+        <ul>
+            <li>imię i nazwisko,</li>
+            <li>adres e-mail,</li>
+            <li>numer telefonu, jeżeli jest potrzebny do realizacji dostawy,</li>
+            <li>adres dostawy,</li>
+            <li>adres rozliczeniowy, jeżeli jest wymagany,</li>
+            <li>dane niezbędne do wystawienia faktury,</li>
+            <li>informacje dotyczące zamówionych produktów,</li>
+            <li>dane dotyczące personalizacji produktu,</li>
+            <li>numer i status zamówienia,</li>
+            <li>wartość zamówienia,</li>
+            <li>status płatności i dostawy.</li>
+        </ul>
+
+        <h2>6. Cele przetwarzania danych</h2>
+        <ul>
+            <li>przyjęcia i realizacji zamówienia,</li>
+            <li>zawarcia i wykonania umowy sprzedaży,</li>
+            <li>obsługi płatności,</li>
+            <li>organizacji dostawy,</li>
+            <li>kontaktu dotyczącego zamówienia,</li>
+            <li>realizacji reklamacji i zwrotów,</li>
+            <li>prowadzenia wymaganej dokumentacji księgowej i podatkowej,</li>
+            <li>zapobiegania nadużyciom,</li>
+            <li>ustalenia, dochodzenia lub obrony roszczeń.</li>
+        </ul>
+
+        <h2>7. Płatności Przelewy24</h2>
+        <p>Płatności mogą być realizowane przy wykorzystaniu systemu Przelewy24, którego operatorem jest PayPro S.A., ul. Pastelowa 8, 60-198 Poznań.</p>
+        <p>W celu obsługi płatności do operatora mogą zostać przekazane dane niezbędne do przeprowadzenia transakcji, np. adres e-mail, informacje o zamówieniu, kwota płatności i identyfikator transakcji.</p>
+        <p>Dane kart płatniczych, dane logowania do bankowości elektronicznej i inne dane służące uwierzytelnieniu płatności są przetwarzane przez operatora płatności, bank lub inny podmiot obsługujący płatność.</p>
+        <p>Moja Biblioteka nie przechowuje pełnych numerów kart płatniczych ani danych logowania do banku.</p>
+
+        <h2>8. Odbiorcy danych</h2>
+        <ul>
+            <li>operatorom płatności,</li>
+            <li>firmom kurierskim i pocztowym,</li>
+            <li>dostawcom i producentom produktów,</li>
+            <li>wykonawcom produktów personalizowanych,</li>
+            <li>dostawcom infrastruktury informatycznej,</li>
+            <li>podmiotom świadczącym usługi księgowe,</li>
+            <li>organom publicznym, jeżeli obowiązek przekazania danych wynika z przepisów prawa.</li>
+        </ul>
+
+        <h2>9. Okres przechowywania</h2>
+        <p>Dane przechowywane wyłącznie lokalnie pozostają na urządzeniu do czasu ich usunięcia przez użytkownika, wyczyszczenia danych aplikacji lub odinstalowania aplikacji.</p>
+        <p>Dane związane z zamówieniami mogą być przechowywane przez okres wymagany do realizacji zamówienia, obsługi reklamacji, wykonywania obowiązków podatkowych i księgowych oraz ochrony przed roszczeniami.</p>
+
+        <h2>10. Prawa użytkownika</h2>
+        <ul>
+            <li>dostępu do swoich danych,</li>
+            <li>ich sprostowania,</li>
+            <li>usunięcia danych,</li>
+            <li>ograniczenia przetwarzania,</li>
+            <li>przenoszenia danych,</li>
+            <li>wniesienia sprzeciwu wobec przetwarzania,</li>
+            <li>cofnięcia udzielonej zgody.</li>
+        </ul>
+        <p>Użytkownik ma również prawo wniesienia skargi do właściwego organu nadzorczego do spraw ochrony danych osobowych.</p>
+
+        <h2>11. Bezpieczeństwo</h2>
+        <p>Stosowane są odpowiednie środki techniczne i organizacyjne mające na celu ochronę przetwarzanych danych.</p>
+        <p>Ponieważ podstawowe dane biblioteki przechowywane są lokalnie, użytkownik powinien również odpowiednio zabezpieczyć swoje urządzenie.</p>
+
+        <h2>12. Reklama i sprzedaż danych</h2>
+        <p>Dane osobowe użytkowników nie są sprzedawane podmiotom trzecim.</p>
+        <p>Aplikacja nie wykorzystuje obecnie danych osobowych do reklamy behawioralnej.</p>
+
+        <h2>13. Zmiany polityki</h2>
+        <p>Polityka może być aktualizowana wraz ze zmianą funkcjonalności aplikacji, stosowanych usług lub obowiązujących wymagań prawnych.</p>
+        <p>Aktualna wersja Polityki prywatności będzie dostępna na tej stronie.</p>
+
+        <h2>14. Kontakt</h2>
+        <p>Pytania dotyczące prywatności można przesyłać na: <a href="mailto:phpdevondemand@gmail.com">phpdevondemand@gmail.com</a>.</p>
+    </article>
+</main>
+<footer>
+    <div class="container">© 2026 Kamil Piętka · Moja Biblioteka</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulamin — Moja Biblioteka</title>
+    <meta name="description" content="Regulamin sprzedaży Moja Biblioteka.">
+    <meta name="robots" content="index,follow">
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0d1117; --panel: #161b22; --text: #e6edf3;
+            --muted: #8b949e; --border: #30363d; --link: #58a6ff; --accent: #f0f6fc;
+        }
+        * { box-sizing: border-box; }
+        body { margin: 0; background: var(--bg); color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+            BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.7; }
+        .container { width: min(900px, calc(100% - 32px)); margin: 0 auto; }
+        header { border-bottom: 1px solid var(--border); padding: 22px 0; }
+        header .container { display:flex; justify-content:space-between; align-items:center; gap:20px; }
+        .brand { color: var(--accent); font-weight:700; text-decoration:none; }
+        nav { display:flex; flex-wrap:wrap; gap:18px; }
+        a { color:var(--link); text-decoration:none; } a:hover { text-decoration:underline; }
+        main { padding:64px 0 80px; }
+        h1 { font-size:clamp(2rem,5vw,3.2rem); line-height:1.15; margin-bottom:12px; }
+        h2 { margin-top:42px; color:var(--accent); font-size:1.35rem; }
+        .subtitle { color:var(--muted); margin-bottom:42px; }
+        .notice { padding:18px 20px; background:var(--panel); border:1px solid var(--border);
+            border-radius:10px; margin:28px 0; }
+        li { margin:7px 0; }
+        footer { border-top:1px solid var(--border); color:var(--muted); padding:28px 0 40px; font-size:.9rem; }
+        @media (max-width:650px) { header .container{display:block;} nav{margin-top:14px;} main{padding-top:40px;} }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <a class="brand" href="/">Kamil Piętka</a>
+        <nav>
+            <a href="/mojabiblioteka/privacy/">Prywatność</a>
+            <a href="/mojabiblioteka/terms/">Regulamin</a>
+            <a href="/mojabiblioteka/returns/">Zwroty</a>
+        </nav>
+    </div>
+</header>
+<main>
+    <article class="container">
+        <h1>Regulamin sprzedaży Moja Biblioteka</h1>
+        <p class="subtitle">Obowiązuje od: [UZUPEŁNIJ DATĘ]</p>
+
+        <div class="notice">Przed uruchomieniem sprzedaży uzupełnij dane Sprzedawcy, adres, NIP oraz adres e-mail.</div>
+
+        <h2>§1. Sprzedawca</h2>
+        <p>Sprzedawcą produktów oferowanych za pośrednictwem Moja Biblioteka jest:</p>
+        <p>
+            <strong>Kamil Piętka</strong><br>
+            Adres: ul. Mossego 2, 62-065 Grodzisk Wlkp.<br>
+            NIP: 9950143003<br>
+            E-mail: <a href="mailto:phpdevondemand@gmail.com">phpdevondemand@gmail.com</a>
+        </p>
+
+        <h2>§2. Postanowienia ogólne</h2>
+        <ol>
+            <li>Regulamin określa zasady składania oraz realizacji zamówień za pośrednictwem aplikacji Moja Biblioteka lub powiązanej strony internetowej.</li>
+            <li>Klient powinien zapoznać się z Regulaminem przed złożeniem zamówienia.</li>
+            <li>Umowa sprzedaży jest zawierana na odległość.</li>
+            <li>Ceny prezentowane konsumentowi podawane są w złotych polskich i obejmują podatki wymagane przepisami, chyba że wyraźnie wskazano inaczej.</li>
+            <li>Przed złożeniem zamówienia Klient otrzymuje informację o całkowitej cenie oraz kosztach dostawy i innych opłatach.</li>
+        </ol>
+
+        <h2>§3. Produkty</h2>
+        <ul>
+            <li>personalizowane okładki na książki,</li>
+            <li>regały i biblioteczki,</li>
+            <li>meble przeznaczone do przechowywania książek,</li>
+            <li>akcesoria do domowej biblioteki,</li>
+            <li>wyposażenie przestrzeni bibliotecznej,</li>
+            <li>inne produkty związane z książkami.</li>
+        </ul>
+
+        <h2>§4. Produkty personalizowane</h2>
+        <ol>
+            <li>Wybrane produkty mogą być wykonywane zgodnie z indywidualną specyfikacją Klienta.</li>
+            <li>Klient odpowiada za poprawność przekazanych wymiarów, napisów, grafik i innych parametrów personalizacji.</li>
+            <li>Przed złożeniem zamówienia Klient zostanie poinformowany, jeśli produkt wykonywany jest wyłącznie według jego indywidualnego zamówienia.</li>
+            <li>W przypadkach przewidzianych przepisami prawo odstąpienia od umowy może nie przysługiwać w stosunku do rzeczy nieprefabrykowanej, wyprodukowanej według specyfikacji konsumenta lub służącej zaspokojeniu jego zindywidualizowanych potrzeb.</li>
+            <li>Wyłączenie prawa odstąpienia nie ogranicza praw związanych z niezgodnością towaru z umową.</li>
+        </ol>
+
+        <h2>§5. Składanie zamówienia</h2>
+        <ol>
+            <li>Klient wybiera produkt oraz dostępne parametry.</li>
+            <li>Przy produkcie personalizowanym Klient przekazuje informacje wymagane do jego wykonania.</li>
+            <li>Klient podaje dane konieczne do realizacji zamówienia.</li>
+            <li>Przed zatwierdzeniem zamówienia Klient ma możliwość sprawdzenia jego zawartości i całkowitej ceny.</li>
+            <li>Złożenie zamówienia wymagającego zapłaty następuje za pomocą funkcji jednoznacznie wskazującej, że zamówienie wiąże się z obowiązkiem zapłaty.</li>
+        </ol>
+
+        <h2>§6. Płatności</h2>
+        <ol>
+            <li>Dostępne metody płatności są prezentowane przed złożeniem zamówienia.</li>
+            <li>Płatności elektroniczne mogą być obsługiwane przez Przelewy24, którego operatorem jest PayPro S.A.</li>
+            <li>Klient może zostać przekierowany do bezpiecznego interfejsu operatora płatności.</li>
+            <li>Sprzedawca nie przechowuje pełnych numerów kart płatniczych ani danych logowania do bankowości elektronicznej.</li>
+        </ol>
+
+        <h2>§7. Dostawa</h2>
+        <ol>
+            <li>Dostępne sposoby i ceny dostawy są przedstawiane przed zatwierdzeniem zamówienia.</li>
+            <li>Dostawa realizowana jest na adres lub do punktu odbioru wskazanego przez Klienta.</li>
+            <li>Przewidywany czas realizacji zamówienia jest prezentowany przed zakupem lub w opisie produktu.</li>
+            <li>Produkty wykonywane indywidualnie mogą wymagać dłuższego czasu realizacji.</li>
+        </ol>
+
+        <h2>§8. Prawo odstąpienia od umowy</h2>
+        <p>Konsument zawierający umowę na odległość ma co do zasady prawo odstąpić od umowy bez podawania przyczyny w terminie 14 dni, z uwzględnieniem ustawowych wyjątków.</p>
+        <p>Szczegółowe informacje znajdują się na stronie <a href="/mojabiblioteka/returns/">Zwroty i reklamacje</a>.</p>
+
+        <h2>§9. Produkty wyłączone z prawa odstąpienia</h2>
+        <p>Prawo odstąpienia może nie przysługiwać m.in. w przypadku rzeczy nieprefabrykowanej, wykonanej według specyfikacji konsumenta lub służącej zaspokojeniu jego zindywidualizowanych potrzeb.</p>
+        <ul>
+            <li>okładki przygotowanej na indywidualny wymiar,</li>
+            <li>okładki z własnym napisem lub grafiką,</li>
+            <li>mebla wykonywanego według wymiarów wskazanych przez Klienta,</li>
+            <li>innego produktu przygotowanego specjalnie dla danego Klienta.</li>
+        </ul>
+
+        <h2>§10. Reklamacje</h2>
+        <ol>
+            <li>Sprzedawca odpowiada za zgodność towaru z umową zgodnie z obowiązującymi przepisami.</li>
+            <li>Reklamację można przesłać na adres <a href="mailto:phpdevondemand@gmail.com">phpdevondemand@gmail.com</a>.</li>
+            <li>Zgłoszenie powinno umożliwiać identyfikację zamówienia oraz opisywać występujący problem.</li>
+            <li>Do zgłoszenia można dołączyć zdjęcia produktu.</li>
+        </ol>
+
+        <h2>§11. Zwroty płatności</h2>
+        <p>Zwroty środków realizowane są zgodnie z obowiązującymi przepisami i, jeżeli jest to możliwe, tą samą metodą płatności, której użyto przy transakcji.</p>
+
+        <h2>§12. Dane osobowe</h2>
+        <p>Informacje o przetwarzaniu danych znajdują się w <a href="/mojabiblioteka/privacy/">Polityce prywatności</a>.</p>
+
+        <h2>§13. Kontakt</h2>
+        <p>E-mail: <a href="mailto:phpdevondemand@gmail.com">phpdevondemand@gmail.com</a><br>Adres: ul. Mossego 2, 62-065 Grodzisk Wlkp.</p>
+
+        <h2>§14. Postanowienia końcowe</h2>
+        <p>Niniejszy Regulamin nie ogranicza praw konsumenta wynikających z bezwzględnie obowiązujących przepisów prawa.</p>
+    </article>
+</main>
+<footer>
+    <div class="container">© 2026 Kamil Piętka · Moja Biblioteka</div>
+</footer>
+</body>
+</html>
