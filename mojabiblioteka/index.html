@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#315c45">
+  <meta name="description" content="Moja Biblioteka — prosta aplikacja do katalogowania książek i kontrolowania wypożyczeń.">
+  <meta property="og:title" content="Moja Biblioteka — Twój księgozbiór w telefonie">
+  <meta property="og:description" content="Skanuj ISBN, porządkuj książki i pamiętaj, komu je pożyczyłeś.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mojabiblioteka.kamilpietka.dev/">
+  <title>Moja Biblioteka — Twój księgozbiór w telefonie</title>
+  <style>
+    :root{--ink:#173128;--muted:#607168;--green:#315c45;--green-dark:#244936;--mint:#dce9df;--cream:#f5f2eb;--paper:#fffdf8;--line:#dce2dc;--gold:#e8b55b;--shadow:0 22px 70px rgba(28,59,45,.14)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}a{color:inherit}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.site-header{position:sticky;top:0;z-index:10;background:rgba(245,242,235,.88);border-bottom:1px solid rgba(49,92,69,.1);backdrop-filter:blur(14px)}.nav{height:72px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none}.brand-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:var(--green);color:#fff;font-size:20px}.nav-links{display:flex;align-items:center;gap:28px}.nav-links a{text-decoration:none;font-size:14px;font-weight:650;color:var(--muted)}.nav-links a:hover{color:var(--green)}.button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 20px;border:1px solid var(--green);border-radius:14px;background:transparent;color:var(--green);font-weight:750;text-decoration:none;transition:.2s ease}.button:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(49,92,69,.15)}.button.primary{background:var(--green);color:#fff}.hero{min-height:720px;display:grid;grid-template-columns:1.06fr .94fr;align-items:center;gap:76px;padding-top:72px;padding-bottom:88px}.eyebrow{display:inline-flex;align-items:center;gap:9px;margin:0 0 20px;color:var(--green);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.eyebrow:before{content:"";width:24px;height:2px;background:var(--gold)}h1,h2,h3,p{margin-top:0}h1{max-width:720px;margin-bottom:24px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(48px,7vw,82px);line-height:.98;letter-spacing:-.045em;font-weight:700}h1 span{color:var(--green)}.lead{max-width:620px;margin-bottom:30px;color:var(--muted);font-size:clamp(18px,2vw,22px)}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:30px}.trust{display:flex;flex-wrap:wrap;gap:10px;color:var(--muted);font-size:14px}.trust span{display:flex;align-items:center;gap:7px}.trust span:not(:last-child):after{content:"•";margin-left:3px;color:#9aaba1}.phone-stage{position:relative;display:grid;place-items:center;min-height:560px}.blob{position:absolute;width:460px;height:460px;border-radius:47% 53% 56% 44%;background:var(--mint);transform:rotate(-8deg)}.phone{position:relative;width:280px;padding:12px;border:7px solid #183127;border-radius:42px;background:#183127;box-shadow:var(--shadow);transform:rotate(3deg)}.phone-screen{min-height:540px;overflow:hidden;border-radius:29px;background:var(--cream);padding:28px 17px 18px}.status{display:flex;justify-content:space-between;margin-bottom:30px;font-size:11px;font-weight:800}.app-count{font-size:10px;color:var(--muted)}.app-title{margin:2px 0 16px;font-size:24px;font-weight:800}.search{height:42px;display:flex;align-items:center;gap:8px;padding:0 13px;border-radius:14px;background:var(--paper);color:#7b8a82;font-size:11px}.chips{display:flex;gap:6px;margin:12px 0 15px}.chip{padding:5px 8px;border:1px solid #cdd8d1;border-radius:999px;font-size:9px}.chip.active{background:var(--mint);border-color:var(--green);color:var(--green)}.book{display:flex;gap:11px;margin-bottom:9px;padding:10px;border-radius:14px;background:var(--paper)}.cover{width:42px;height:58px;flex:none;border-radius:5px;display:grid;place-items:center;background:#d8a85a;color:#fff;font-family:Georgia,serif;font-size:9px;text-align:center}.cover.blue{background:#55758a}.cover.red{background:#8b5147}.book-copy{min-width:0}.book-copy strong{display:block;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.book-copy small{display:block;color:var(--muted);font-size:9px}.badge{display:inline-block;margin-top:6px;padding:2px 6px;border-radius:999px;background:#e3efe6;color:var(--green);font-size:8px;font-weight:800}.fab{position:absolute;right:20px;bottom:24px;width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:var(--green);color:#fff;font-size:25px;box-shadow:0 8px 22px rgba(49,92,69,.28)}.floating-note{position:absolute;right:-18px;bottom:78px;padding:12px 15px;border-radius:14px;background:var(--paper);box-shadow:0 14px 40px rgba(34,63,49,.16);font-size:12px;font-weight:750;transform:rotate(-2deg)}.floating-note:before{content:"✓";display:inline-grid;place-items:center;width:22px;height:22px;margin-right:7px;border-radius:50%;background:var(--mint);color:var(--green)}section.section{padding:96px 0}.section-head{max-width:660px;margin-bottom:46px}.section h2{margin-bottom:15px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,5vw,56px);line-height:1.05;letter-spacing:-.035em}.section-head>p:last-child{color:var(--muted);font-size:18px}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.feature{min-height:250px;padding:28px;border:1px solid var(--line);border-radius:24px;background:var(--paper)}.icon{width:48px;height:48px;display:grid;place-items:center;margin-bottom:45px;border-radius:15px;background:var(--mint);color:var(--green);font-size:23px}.feature h3{margin-bottom:8px;font-size:20px}.feature p{margin:0;color:var(--muted);font-size:15px}.steps-section{background:var(--green);color:#fff}.steps-section .eyebrow{color:#f4cd86}.steps-section .eyebrow:before{background:#f4cd86}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}.step-num{display:block;margin-bottom:22px;color:#a8c1b1;font-family:Georgia,serif;font-size:52px}.step h3{font-size:21px}.step p{color:#c9d7ce}.privacy{display:grid;grid-template-columns:.75fr 1.25fr;gap:70px;align-items:start}.privacy-card{padding:34px;border-radius:24px;background:var(--mint)}.privacy-card strong{display:block;margin-bottom:8px;font-family:Georgia,serif;font-size:25px}.privacy-card p{margin:0;color:#496157}.check-list{display:grid;gap:18px}.check{display:grid;grid-template-columns:34px 1fr;gap:13px}.check-mark{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:var(--paper);color:var(--green);font-weight:900}.check strong{display:block}.check p{margin:2px 0 0;color:var(--muted);font-size:14px}.cta{padding:72px 20px;text-align:center}.cta-card{max-width:980px;margin:auto;padding:68px 30px;border-radius:32px;background:var(--ink);color:#fff}.cta h2{max-width:700px;margin:0 auto 18px}.cta p{max-width:560px;margin:0 auto 28px;color:#c8d4ce}.cta .button{border-color:#fff;background:#fff;color:var(--ink)}footer{border-top:1px solid var(--line)}.footer{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:32px;padding-bottom:32px;color:var(--muted);font-size:13px}.footer p{margin:0}.footer-links{display:flex;flex-wrap:wrap;gap:20px}.footer a{text-decoration:none}.footer a:hover{color:var(--green)}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;gap:30px;padding-top:64px}.hero-copy{text-align:center}.hero-copy .eyebrow{justify-content:center}.lead{margin-left:auto;margin-right:auto}.hero-actions,.trust{justify-content:center}.phone-stage{min-height:600px}.feature-grid,.steps{grid-template-columns:1fr}.feature{min-height:auto}.icon{margin-bottom:26px}.privacy{grid-template-columns:1fr}.nav-links a:not(.button){display:none}}
+    @media(max-width:560px){.wrap{width:min(100% - 28px,1120px)}.nav{height:64px}.nav-links .button{min-height:42px;padding:0 13px;font-size:12px}h1{font-size:49px}.hero{padding-top:52px;padding-bottom:60px}.phone-stage{min-height:520px}.blob{width:330px;height:330px}.phone{width:245px}.phone-screen{min-height:470px}.floating-note{right:-2px}.section{padding:70px 0!important}.privacy{gap:30px}.cta{padding-left:14px;padding-right:14px}.cta-card{padding:52px 22px}.footer{align-items:flex-start;flex-direction:column}.footer-links{gap:12px 18px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button{transition:none}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#start" aria-label="Moja Biblioteka — strona główna"><span class="brand-mark" aria-hidden="true">M</span> Moja Biblioteka</a>
+      <nav class="nav-links" aria-label="Główna nawigacja">
+        <a href="#funkcje">Funkcje</a><a href="#jak-dziala">Jak działa</a><a href="#prywatnosc">Prywatność</a>
+        <a class="button primary" href="https://play.google.com/store/apps/details?id=com.kamilloo.mylibrary">Pobierz aplikację</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="start">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">Twoje książki. Zawsze pod ręką.</p>
+        <h1>Domowa biblioteka <span>bez chaosu.</span></h1>
+        <p class="lead">Kataloguj książki, skanując ich ISBN. Wyszukuj kolejne tytuły w kilka sekund i pamiętaj, komu pożyczyłeś każdą z nich.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="https://play.google.com/store/apps/details?id=com.kamilloo.mylibrary" aria-label="Pobierz aplikację Moja Biblioteka w Google Play">Pobierz w Google Play&nbsp; →</a>
+          <a class="button" href="#funkcje">Poznaj funkcje</a>
+        </div>
+        <div class="trust" aria-label="Najważniejsze informacje"><span>Bez konta</span><span>Dane zapisane lokalnie</span><span>W języku polskim</span></div>
+      </div>
+
+      <div class="phone-stage" aria-label="Podgląd aplikacji Moja Biblioteka">
+        <div class="blob"></div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="status"><span>9:41</span><span>● ● ●</span></div>
+            <div class="app-count">24 książki w kolekcji</div><div class="app-title">Moja biblioteka</div>
+            <div class="search">⌕ &nbsp; Szukaj tytułu lub autora</div>
+            <div class="chips"><span class="chip active">Wszystkie</span><span class="chip">Dostępne</span><span class="chip">Wypożyczone</span></div>
+            <div class="book"><div class="cover">SOLARIS</div><div class="book-copy"><strong>Solaris</strong><small>Stanisław Lem</small><span class="badge">Dostępna</span></div></div>
+            <div class="book"><div class="cover blue">REPORTAŻ</div><div class="book-copy"><strong>Cesarz</strong><small>Ryszard Kapuściński</small><span class="badge">Dostępna</span></div></div>
+            <div class="book"><div class="cover red">POWIEŚĆ</div><div class="book-copy"><strong>Lalka</strong><small>Bolesław Prus</small><span class="badge">Wypożyczona</span></div></div>
+            <div class="fab" aria-hidden="true">+</div>
+          </div>
+        </div>
+        <div class="floating-note">Książka dodana</div>
+      </div>
+    </section>
+
+    <section id="funkcje" class="section wrap">
+      <div class="section-head"><p class="eyebrow">Wszystko na swoim miejscu</p><h2>Mniej zapisywania. Więcej czytania.</h2><p>Najważniejsze narzędzia do zarządzania domowym księgozbiorem — bez zbędnych ekranów i skomplikowanej konfiguracji.</p></div>
+      <div class="feature-grid">
+        <article class="feature"><div class="icon" aria-hidden="true">▣</div><h3>Skanowanie ISBN</h3><p>Zeskanuj kod kreskowy aparatem. Aplikacja wyszuka tytuł, autora i okładkę w Open Library.</p></article>
+        <article class="feature"><div class="icon" aria-hidden="true">⌕</div><h3>Szybkie wyszukiwanie</h3><p>Znajdź książkę po tytule lub autorze. Filtruj kolekcję i sortuj ją alfabetycznie.</p></article>
+        <article class="feature"><div class="icon" aria-hidden="true">↗</div><h3>Kontrola wypożyczeń</h3><p>Zapisuj, komu pożyczasz książki. Oznaczaj zwroty i przeglądaj pełną historię.</p></article>
+      </div>
+    </section>
+
+    <section id="jak-dziala" class="section steps-section">
+      <div class="wrap">
+        <div class="section-head"><p class="eyebrow">Prosto od pierwszej książki</p><h2>Trzy kroki do uporządkowanej półki.</h2></div>
+        <div class="steps">
+          <article class="step"><span class="step-num">01</span><h3>Zeskanuj lub wpisz</h3><p>Użyj aparatu do odczytania ISBN albo dodaj dane ręcznie.</p></article>
+          <article class="step"><span class="step-num">02</span><h3>Uzupełnij szczegóły</h3><p>Sprawdź znalezione informacje, wybierz stan egzemplarza i zapisz.</p></article>
+          <article class="step"><span class="step-num">03</span><h3>Zarządzaj kolekcją</h3><p>Wyszukuj książki, rejestruj wypożyczenia i sprawdzaj historię.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="prywatnosc" class="section wrap privacy">
+      <div><p class="eyebrow">Prywatność</p><h2>Twój księgozbiór należy do Ciebie.</h2></div>
+      <div>
+        <div class="privacy-card"><strong>Bez zakładania konta</strong><p>Informacje o książkach i wypożyczeniach są przechowywane lokalnie na urządzeniu. Aparat służy wyłącznie do skanowania kodów.</p></div>
+        <div class="check-list" style="margin-top:26px">
+          <div class="check"><span class="check-mark">✓</span><div><strong>Lokalna baza danych</strong><p>Kolekcja działa również bez połączenia z internetem.</p></div></div>
+          <div class="check"><span class="check-mark">✓</span><div><strong>Jasne zasady</strong><p>Pełne informacje znajdziesz w naszej polityce prywatności.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta"><div class="cta-card"><p class="eyebrow">Zacznij od jednej książki</p><h2>Cała biblioteka w Twojej kieszeni.</h2><p>Dodawaj książki szybciej, pilnuj wypożyczeń i odzyskaj porządek na półkach.</p><a class="button" href="https://play.google.com/store/apps/details?id=com.kamilloo.mylibrary">Otwórz w Google Play&nbsp; →</a></div></section>
+  </main>
+
+  <footer><div class="wrap footer"><p>© 2026 Kamil Piętka. Moja Biblioteka.</p><nav class="footer-links" aria-label="Dokumenty i kontakt"><a href="./privacy/">Polityka prywatności</a><a href="./terms/">Regulamin</a><a href="./returns/">Zwroty</a><a href="mailto:phpdevondemand@gmail.com">Kontakt</a></nav></div></footer>
+</body>
+</html>
