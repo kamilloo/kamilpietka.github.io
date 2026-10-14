@@ -76,6 +76,8 @@ a {
   color: var(--text) !important;
 }
 
+/* HERO */
+
 .hero {
   padding: 120px 0 90px;
 }
@@ -119,6 +121,8 @@ h1 {
   color: var(--muted);
 }
 
+/* ACTIONS */
+
 .actions {
   display: flex;
   gap: 12px;
@@ -157,12 +161,25 @@ h1 {
   border-color: var(--accent);
 }
 
+/* EVALUATION CONTROLS */
+
 .evaluate {
   margin-top: 48px;
   padding: 24px;
   border: 1px solid var(--line);
   border-radius: 16px;
   background: rgba(18, 24, 33, 0.58);
+}
+
+.evaluate::before {
+  content: "Portfolio focus";
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
 }
 
 .evaluate-label {
@@ -188,7 +205,8 @@ h1 {
           color 160ms ease,
           border-color 160ms ease,
           background 160ms ease,
-          transform 160ms ease;
+          transform 160ms ease,
+          box-shadow 160ms ease;
 }
 
 .evaluate-options button:hover {
@@ -202,6 +220,7 @@ h1 {
   color: var(--bg);
   background: var(--accent);
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .evaluate-options button.secondary {
@@ -214,6 +233,8 @@ a:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
+
+/* STACK */
 
 .stack {
   display: flex;
@@ -230,6 +251,8 @@ a:focus-visible {
   border-radius: 999px;
   font-size: .9rem;
 }
+
+/* SECTIONS */
 
 .section {
   padding: 80px 0;
@@ -248,6 +271,8 @@ a:focus-visible {
   font-size: 1.05rem;
 }
 
+/* PROJECT GRID */
+
 .project-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -264,7 +289,8 @@ a:focus-visible {
           opacity 220ms ease,
           transform 220ms ease,
           border-color 220ms ease,
-          background 220ms ease;
+          background 220ms ease,
+          box-shadow 220ms ease;
 }
 
 .project:hover {
@@ -273,13 +299,26 @@ a:focus-visible {
 
 .project.featured {
   grid-column: 1 / -1;
+  padding: clamp(30px, 4vw, 42px);
 }
+
+.project.featured h3 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+.project.featured .project-proof {
+  max-width: 900px;
+}
+
+/* PROJECT RELEVANCE */
 
 .project.project-relevant,
 .project[data-relevance="primary"] {
   opacity: 1;
   border-color: var(--accent-line);
-  box-shadow: 0 0 0 1px rgba(125, 211, 252, 0.04);
+  box-shadow:
+          0 0 0 1px rgba(125, 211, 252, 0.05),
+          0 18px 50px rgba(0, 0, 0, 0.16);
 }
 
 .project.project-relevant:hover,
@@ -289,13 +328,17 @@ a:focus-visible {
 
 .project.project-secondary,
 .project[data-relevance="secondary"] {
-  opacity: .48;
+  opacity: .62;
+  transform: scale(.985);
 }
 
 .project.project-secondary:hover,
 .project[data-relevance="secondary"]:hover {
-  opacity: .82;
+  opacity: 1;
+  transform: translateY(-2px) scale(1);
 }
+
+/* PROJECT CONTENT */
 
 .project h3 {
   font-size: 1.8rem;
@@ -310,22 +353,86 @@ a:focus-visible {
   margin-bottom: 8px;
 }
 
-.highlights {
+.project > p:not(.project-kicker):not(.project-proof) {
+  color: var(--muted);
+  max-width: 72ch;
+}
+
+.project-proof {
+  margin: 22px 0 0;
+  padding: 16px 18px;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 0 10px 10px 0;
   color: var(--muted);
 }
+
+.project-proof strong {
+  color: var(--text);
+}
+
+.highlights {
+  margin-top: 22px;
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.highlights li + li {
+  margin-top: 6px;
+}
+
+/* ENGINEERING NOTE */
+
+.engineering-note {
+  margin-top: 24px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(11, 15, 20, 0.45);
+}
+
+.engineering-note-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.engineering-note p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* SKILL PROOF */
 
 .skill-proof {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 22px;
+  margin-top: 24px;
+}
+
+.skill-proof::before {
+  content: "Evidence:";
+  display: inline-flex;
+  align-items: center;
+  margin-right: 2px;
+  color: var(--muted);
+  font-size: .82rem;
 }
 
 .skill-proof span {
   color: var(--accent);
   border-color: var(--accent-line);
   background: var(--accent-soft);
+  font-size: .82rem;
+  font-weight: 600;
 }
+
+/* PROJECT LINKS */
 
 .project-links {
   display: flex;
@@ -343,6 +450,8 @@ a:focus-visible {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
+
+/* ARCHITECTURE */
 
 .architecture {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -365,6 +474,8 @@ a:focus-visible {
   margin-top: 18px;
 }
 
+/* ABOUT */
+
 .about {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -374,6 +485,8 @@ a:focus-visible {
 .about p {
   color: var(--muted);
 }
+
+/* FOOTER */
 
 .footer {
   border-top: 1px solid var(--line);
@@ -392,6 +505,8 @@ a:focus-visible {
   color: var(--text);
 }
 
+/* ACCESSIBILITY */
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -406,6 +521,8 @@ a:focus-visible {
   }
 }
 
+/* TABLET / MOBILE */
+
 @media (max-width: 760px) {
   .wrap {
     width: min(var(--max), calc(100% - 28px));
@@ -418,6 +535,7 @@ a:focus-visible {
 
   .project.featured {
     grid-column: auto;
+    padding: 24px;
   }
 
   .nav {
@@ -458,6 +576,19 @@ a:focus-visible {
 
   .project {
     padding: 24px;
+  }
+
+  .project-proof {
+    padding: 14px 16px;
+  }
+
+  .engineering-note {
+    padding: 16px;
+  }
+
+  .skill-proof::before {
+    width: 100%;
+    margin-bottom: 2px;
   }
 
   .footer {
