@@ -25,5 +25,5 @@ jobs:
           rsync -avz --delete \
             --exclude '.git' \
             --exclude '.github' \
-            ./ \
+            public/. \
             "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/opt/portfolio/site/"
