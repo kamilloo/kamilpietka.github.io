@@ -1,157 +1,477 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Kamil Pietka — Backend / Cloud Software Engineer">
+
+  <meta
+          name="description"
+          content="Kamil Pietka — Backend / Cloud Software Engineer. Explore backend systems, cloud architecture, production deployments and engineering decisions."
+  >
+
   <title>Kamil Piętka — Backend / Cloud Software Engineer</title>
+
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <header class="site-header">
-    <div class="wrap nav">
-      <a class="brand" href="#top">KP</a>
-      <nav>
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="https://github.com/kamilloo" target="_blank" rel="noreferrer">GitHub</a>
-      </nav>
-    </div>
-  </header>
 
-  <main id="top">
-    <section class="hero wrap">
-      <p class="eyebrow">Open to software engineering opportunities</p>
-      <h1>Kamil Piętka</h1>
-      <h2>Backend / Cloud Software Engineer</h2>
-      <p class="lead">
-        I build backend systems, APIs and data-driven applications
-        with a strong focus on testing, maintainability and practical deployment.
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+
+    <a class="brand" href="#top" aria-label="Kamil Piętka homepage">
+      KP
+    </a>
+
+    <nav aria-label="Primary navigation">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+
+      <a
+              href="https://github.com/kamilloo"
+              target="_blank"
+              rel="noreferrer"
+      >
+        GitHub
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero wrap">
+
+    <p class="eyebrow">
+      Open to software engineering opportunities
+    </p>
+
+    <h1>Kamil Piętka</h1>
+
+    <h2>
+      Backend / Cloud Software Engineer
+    </h2>
+
+    <p class="motto">
+      <strong>Skills are claims. Projects are proof.</strong>
+    </p>
+
+    <p class="lead">
+      Explore the backend systems, cloud architecture,
+      production deployments and engineering decisions behind my work.
+    </p>
+
+
+    <div class="actions">
+
+      <a
+              class="button primary"
+              href="#projects"
+      >
+        Explore the proof
+      </a>
+
+      <a
+              class="button"
+              href="https://github.com/kamilloo"
+              target="_blank"
+              rel="noreferrer"
+      >
+        GitHub profile
+      </a>
+
+    </div>
+
+
+    <!-- INTERACTIVE EVALUATION -->
+    <div class="evaluate">
+
+      <p class="evaluate-label">
+        What would you like to evaluate?
       </p>
 
-      <div class="actions">
-        <a class="button primary" href="#projects">View projects</a>
-        <a class="button" href="https://github.com/kamilloo" target="_blank" rel="noreferrer">
-          GitHub profile
-        </a>
+      <div
+              class="evaluate-options"
+              role="group"
+              aria-label="Choose an engineering focus"
+      >
+
+        <button
+                type="button"
+                data-view="backend"
+                aria-pressed="false"
+        >
+          Backend
+        </button>
+
+        <button
+                type="button"
+                data-view="cloud"
+                aria-pressed="false"
+        >
+          Cloud / AWS
+        </button>
+
+        <button
+                type="button"
+                data-view="system-design"
+                aria-pressed="false"
+        >
+          System Design
+        </button>
+
+        <button
+                type="button"
+                data-view="production"
+                aria-pressed="false"
+        >
+          Production
+        </button>
+
+        <button
+                type="button"
+                data-view="product-delivery"
+                aria-pressed="false"
+        >
+          Product Delivery
+        </button>
+
+        <button
+                type="button"
+                data-view="all"
+                class="secondary"
+                aria-pressed="false"
+        >
+          All Evidence
+        </button>
+
       </div>
+    </div>
 
-      <div class="stack">
-        <span>PHP</span>
-        <span>Laravel</span>
-        <span>TypeScript</span>
-        <span>Node.js</span>
-        <span>Python</span>
-        <span>AWS</span>
-        <span>Docker</span>
-        <span>SQL</span>
-      </div>
-    </section>
 
-    <section id="projects" class="section wrap">
-      <p class="eyebrow">Selected work</p>
-      <h2>Projects</h2>
+    <!-- CORE STACK -->
+    <div
+            class="stack"
+            aria-label="Core technology stack"
+    >
+      <span>PHP</span>
+      <span>Laravel</span>
+      <span>TypeScript</span>
+      <span>Node.js</span>
+      <span>Python</span>
+      <span>AWS</span>
+      <span>Docker</span>
+      <span>SQL</span>
+    </div>
 
-      <article class="project featured">
-        <p class="project-kicker">Flagship full-stack project</p>
-        <h3>Vouchers</h3>
+  </section>
+
+
+  <!-- PROJECTS -->
+  <section
+          id="projects"
+          class="section wrap"
+  >
+
+    <p class="eyebrow">
+      Evidence
+    </p>
+
+    <h2 data-projects-title>
+      Engineering Evidence
+    </h2>
+
+    <p
+            class="section-intro"
+            data-projects-description
+    >
+      Real projects demonstrating backend engineering, cloud architecture,
+      production delivery and system design.
+    </p>
+
+
+    <div
+            class="project-list"
+            data-project-list
+    >
+
+      <!-- VOUCHERS -->
+      <article
+              class="project featured"
+              data-project="vouchers"
+              data-skills="backend production system-design"
+      >
+
+        <p class="project-kicker">
+          Backend systems & production engineering
+        </p>
+
+        <h3>
+          Vouchers
+        </h3>
+
         <p>
-          A full-stack voucher application demonstrating backend application structure,
-          database work, automated testing and a separate client application.
+          A full-stack voucher application demonstrating backend
+          application structure, database work, automated testing
+          and a separate client application.
         </p>
 
         <ul class="highlights">
           <li>Laravel backend</li>
           <li>Separate TypeScript client application</li>
+          <li>Database-backed application architecture</li>
           <li>Automated tests</li>
+          <li>Docker-ready deployment</li>
           <li>Target for live VPS deployment</li>
         </ul>
 
+
+        <div
+                class="skill-proof"
+                aria-label="Skills demonstrated"
+        >
+          <span>Backend</span>
+          <span>System Design</span>
+          <span>Production</span>
+        </div>
+
+
         <div class="project-links">
-          <a href="https://github.com/kamilloo/vouchers" target="_blank" rel="noreferrer">
+
+          <a
+                  href="https://github.com/kamilloo/vouchers"
+                  target="_blank"
+                  rel="noreferrer"
+          >
             Backend source ↗
           </a>
-          <a href="https://github.com/kamilloo/vouchers-app" target="_blank" rel="noreferrer">
+
+          <a
+                  href="https://github.com/kamilloo/vouchers-app"
+                  target="_blank"
+                  rel="noreferrer"
+          >
             Frontend source ↗
           </a>
+
         </div>
+
       </article>
 
-      <div class="project-grid">
-        <article class="project">
-          <p class="project-kicker">Cloud & data engineering</p>
-          <h3>AWS Data Engineering Labs</h3>
+
+      <!-- AWS DATA ENGINEERING -->
+      <article
+              class="project"
+              data-project="aws-data-engineering"
+              data-skills="cloud system-design production"
+      >
+
+        <p class="project-kicker">
+          Cloud architecture & data engineering
+        </p>
+
+        <h3>
+          AWS Data Engineering Labs
+        </h3>
+
+        <p>
+          Hands-on batch and streaming pipelines covering ETL,
+          ELT and event processing on AWS.
+        </p>
+
+
+        <div class="architecture">
+
           <p>
-            Hands-on batch and streaming pipelines covering ETL, ELT
-            and event processing on AWS.
+            <strong>Batch pipeline</strong>
           </p>
 
-          <div class="architecture">
-            S3 → Glue / Athena<br>
+          <p>
+            S3 → Glue → Athena
+          </p>
+
+          <p>
+            <strong>Real-time pipeline</strong>
+          </p>
+
+          <p>
             Kinesis → Lambda → DynamoDB
-          </div>
-
-          <div class="project-links">
-            <a href="https://github.com/kamilloo/aws-data-engineering-labs-etl-elt"
-               target="_blank" rel="noreferrer">
-              ETL / ELT source ↗
-            </a>
-          </div>
-        </article>
-
-        <article class="project">
-          <p class="project-kicker">Current mobile project</p>
-          <h3>My Library</h3>
-          <p>
-            A local-first Flutter application for cataloguing books and tracking lending.
           </p>
 
-          <ul class="highlights">
-            <li>Flutter / Dart</li>
-            <li>SQLite</li>
-            <li>Barcode and ISBN scanning</li>
-            <li>Open Library metadata lookup</li>
-          </ul>
+        </div>
 
-          <div class="project-links">
-            <a href="https://github.com/kamilloo/my-library-app"
-               target="_blank" rel="noreferrer">
-              Source code ↗
-            </a>
-          </div>
-          <div class="project-links">
-            <a href="https://mojabiblioteka.kamilpietka.dev/"
-               target="_blank" rel="noreferrer">
-              Landing Page ↗
-            </a>
-          </div>
-        </article>
-      </div>
-    </section>
 
-    <section id="about" class="section wrap about">
-      <div>
-        <p class="eyebrow">About</p>
-        <h2>Engineering across backend, cloud and data</h2>
-      </div>
-      <div>
-        <p>
-          I enjoy building software that can be understood, tested and operated —
-          not only code that works locally.
+        <ul class="highlights">
+          <li>AWS service integration</li>
+          <li>Batch data processing</li>
+          <li>Streaming event processing</li>
+          <li>Serverless architecture</li>
+          <li>Data flow and system design</li>
+        </ul>
+
+
+        <div
+                class="skill-proof"
+                aria-label="Skills demonstrated"
+        >
+          <span>Cloud / AWS</span>
+          <span>System Design</span>
+          <span>Production</span>
+        </div>
+
+
+        <div class="project-links">
+
+          <a
+                  href="https://github.com/kamilloo/aws-data-engineering-labs-etl-elt"
+                  target="_blank"
+                  rel="noreferrer"
+          >
+            ETL / ELT source ↗
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- MY LIBRARY -->
+      <article
+              class="project"
+              data-project="my-library"
+              data-skills="product-delivery mobile"
+      >
+
+        <p class="project-kicker">
+          End-to-end product delivery
         </p>
-        <p>
-          My work spans PHP/Laravel, TypeScript/Node.js, Python, AWS,
-          Docker and mobile development.
-        </p>
-      </div>
-    </section>
-  </main>
 
-  <footer class="wrap footer">
-    <p>© 2026 Kamil Pietka</p>
-    <a href="https://github.com/kamilloo" target="_blank" rel="noreferrer">
-      github.com/kamilloo ↗
-    </a>
-  </footer>
+        <h3>
+          My Library
+        </h3>
+
+        <p>
+          A local-first Flutter application for cataloguing books,
+          tracking lending and managing a personal library.
+        </p>
+
+
+        <ul class="highlights">
+          <li>Flutter / Dart</li>
+          <li>Local-first SQLite architecture</li>
+          <li>Barcode and ISBN scanning</li>
+          <li>Open Library metadata lookup</li>
+          <li>Lending history</li>
+          <li>Reading status tracking</li>
+        </ul>
+
+
+        <div
+                class="skill-proof"
+                aria-label="Skills demonstrated"
+        >
+          <span>Product Delivery</span>
+          <span>Mobile</span>
+        </div>
+
+
+        <div class="project-links">
+
+          <a
+                  href="https://github.com/kamilloo/my-library-app"
+                  target="_blank"
+                  rel="noreferrer"
+          >
+            Source code ↗
+          </a>
+
+          <a
+                  href="https://mojabiblioteka.kamilpietka.dev/"
+                  target="_blank"
+                  rel="noreferrer"
+          >
+            Landing page ↗
+          </a>
+
+        </div>
+
+      </article>
+
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section
+          id="about"
+          class="section wrap about"
+  >
+
+    <div>
+
+      <p class="eyebrow">
+        About
+      </p>
+
+      <h2>
+        Engineering across backend, cloud and data
+      </h2>
+
+    </div>
+
+
+    <div>
+
+      <p>
+        I enjoy building software that can be understood,
+        tested, deployed and operated — not only code that
+        works locally.
+      </p>
+
+      <p>
+        My work spans PHP/Laravel, TypeScript/Node.js,
+        Python, AWS, Docker, SQL and mobile development.
+      </p>
+
+      <p>
+        I focus on practical engineering decisions:
+        application architecture, maintainability,
+        deployment, data flow and production readiness.
+      </p>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="wrap footer">
+
+  <p>
+    © 2026 Kamil Pietka
+  </p>
+
+  <a
+          href="https://github.com/kamilloo"
+          target="_blank"
+          rel="noreferrer"
+  >
+    github.com/kamilloo ↗
+  </a>
+
+</footer>
+
+
+<!-- INTERACTIVE PORTFOLIO LOGIC -->
+<script src="script.js"></script>
+
 </body>
 </html>
+```
