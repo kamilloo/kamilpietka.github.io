@@ -1,16 +1,8 @@
 #!/usr/bin/env bash
-set -eu
+set -eux
 
-echo "User:"
-whoami
+apt-get update
+apt-get install -y rsync
 
-echo "SSH:"
-command -v ssh || true
-
-echo "rsync:"
-command -v rsync || true
-
-echo "apt:"
-command -v apt-get || true
-
-echo "Environment ready"
+command -v rsync
+rsync --version
