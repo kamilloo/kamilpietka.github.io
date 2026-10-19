@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Moja Biblioteka — Flutter local-first personal library application. Engineering case study by Kamil Piętka.">
+  <title>Moja Biblioteka — Engineering Case Study | Kamil Piętka</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    .case-study { max-width: 850px; padding-top: 90px; padding-bottom: 100px; }
+    .case-study h1 { font-size: clamp(2.7rem, 6vw, 4.5rem); line-height: 1.1; margin: 12px 0 24px; }
+    .case-study h2 { margin: 52px 0 14px; font-size: 1.7rem; }
+    .case-study p, .case-study li { line-height: 1.75; }
+    .case-study .intro { font-size: 1.2rem; color: var(--muted); }
+    .case-study .links { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 30px; }
+    .case-study .links a { padding: 11px 17px; border: 1px solid var(--line); border-radius: 8px; text-decoration: none; }
+    .case-study .links a:hover { border-color: var(--accent); }
+    .case-study .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 24px; margin-top: 24px; }
+    .case-study .panel h2 { margin-top: 0; }
+    .case-study a:not(.links a) { color: var(--accent); }
+    .case-study .muted { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="../../index.html#top" aria-label="Back to Kamil Piętka portfolio">KP</a>
+      <nav aria-label="Primary navigation">
+        <a href="../../index.html#projects">← All projects</a>
+        <a href="https://github.com/kamilloo/my-library-app" target="_blank" rel="noopener noreferrer">Source code ↗</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap case-study">
+    <p class="eyebrow">Product Delivery · Flutter · Mobile</p>
+    <h1>Moja Biblioteka</h1>
+    <p class="intro">A local-first personal library application for cataloguing books, tracking lending, and discovering book information through ISBN and barcode scanning.</p>
+    <div class="links">
+      <a href="https://mojabiblioteka.app/" target="_blank" rel="noopener noreferrer">Visit product website ↗</a>
+      <a href="https://github.com/kamilloo/my-library-app" target="_blank" rel="noopener noreferrer">Explore source code ↗</a>
+    </div>
+
+    <section class="panel" aria-labelledby="problem">
+      <h2 id="problem">The problem</h2>
+      <p>Managing a personal library should be useful even when network access is unavailable. The application aims to make book cataloguing, lending history, and reading status convenient without depending on a continuously available backend.</p>
+    </section>
+
+    <section aria-labelledby="approach">
+      <h2 id="approach">Engineering approach</h2>
+      <ul>
+        <li><strong>Local-first persistence:</strong> Flutter/Dart application with an on-device SQLite data store.</li>
+        <li><strong>Book discovery:</strong> ISBN and barcode scanning combined with Open Library metadata integration.</li>
+        <li><strong>Library workflows:</strong> Book collection, reading status, and lending history.</li>
+        <li><strong>Delivery:</strong> Consideration of privacy, release preparation, and a public-facing product website.</li>
+      </ul>
+    </section>
+
+    <section class="panel" aria-labelledby="architecture">
+      <h2 id="architecture">Architecture at a glance</h2>
+      <p><strong>Flutter UI → application logic → local SQLite storage</strong></p>
+      <p>For supported discovery flows, the app integrates external book metadata from Open Library. The local database keeps the core library experience available offline.</p>
+    </section>
+
+    <section aria-labelledby="tradeoffs">
+      <h2 id="tradeoffs">Key trade-off</h2>
+      <p>A local-first design reduces the dependency on a hosted backend for everyday book management. It also means that device-to-device synchronization, if added later, needs an explicit conflict-resolution and privacy model rather than being assumed to work automatically.</p>
+    </section>
+
+    <section aria-labelledby="evidence">
+      <h2 id="evidence">Project evidence</h2>
+      <p>Review the <a href="https://github.com/kamilloo/my-library-app" target="_blank" rel="noopener noreferrer">Flutter source repository</a> for implementation details, and the <a href="https://mojabiblioteka.app/" target="_blank" rel="noopener noreferrer">public site</a> for the product presentation.</p>
+      <p class="muted">This is an architecture and delivery overview; it does not claim independently verified usage metrics or app-store release statistics.</p>
+    </section>
+
+    <div class="links"><a href="../../index.html#projects">← Back to Engineering Evidence</a></div>
+  </main>
+  <footer class="wrap footer"><p>© 2026 Kamil Piętka</p><a href="https://github.com/kamilloo" target="_blank" rel="noopener noreferrer">GitHub ↗</a></footer>
+</body>
+</html>
