@@ -259,8 +259,8 @@
 
 
         <div class="project-links">
-          <a class="project-primary-link" href="https://api-vouchers.kamilpietka.dev/">
-            View case study →
+          <a class="project-primary-link" href="https://vouchers.kamilpietka.dev/" target="_blank" rel="noopener noreferrer">
+            Live web app ↗
           </a>
 
           <a
@@ -464,6 +464,84 @@
                   rel="noreferrer"
           >
             Source ↗
+          </a>
+        </div>
+
+      </article>
+
+      <!-- PRODUCTION INFRASTRUCTURE -->
+      <article
+              class="project"
+              data-project="production-infrastructure"
+              data-skills="backend cloud system-design production"
+      >
+
+        <p class="project-kicker">
+          Production infrastructure & DevOps
+        </p>
+
+        <h3>
+          Production Infrastructure & Deployment
+        </h3>
+
+        <p>
+          Designed and deployed a Docker-based VPS environment hosting this
+          portfolio, the Vouchers frontend and Laravel API, and the public
+          Moja Biblioteka website across six hostnames.
+        </p>
+
+        <p class="project-proof">
+          <strong>What this proves:</strong>
+          I can design service boundaries, configure HTTPS and reverse proxy
+          routing, isolate databases and application processes, migrate an
+          existing deployment, and verify services after release.
+        </p>
+
+        <ul class="highlights">
+          <li>Caddy routing with HTTPS and multi-domain hosting</li>
+          <li>Docker Compose orchestration and private service networks</li>
+          <li>Nginx → PHP-FPM → Laravel with persistent MySQL storage</li>
+          <li>Container image publishing and local integration testing</li>
+          <li>Deployment health checks and documented rollback steps</li>
+        </ul>
+
+        <div class="engineering-note">
+          <span class="engineering-note-label">
+            Engineering decision
+          </span>
+          <p>
+            Only Caddy publishes web ports on the VPS. The Laravel runtime and
+            MySQL remain on Docker-internal networks; Nginx handles HTTP and
+            forwards PHP requests to PHP-FPM.
+          </p>
+        </div>
+
+        <div
+                class="skill-proof"
+                aria-label="Skills demonstrated"
+        >
+          <span>Backend</span>
+          <span>Cloud / Infrastructure</span>
+          <span>System Design</span>
+          <span>Production</span>
+        </div>
+
+        <div class="project-links">
+          <a
+                  class="project-primary-link"
+                  href="https://github.com/kamilloo/kamilpietka-devops/blob/main/docs/production-case-study.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+          >
+            View architecture case study ↗
+          </a>
+
+          <a
+                  href="https://github.com/kamilloo/kamilpietka-devops"
+                  target="_blank"
+                  rel="noopener noreferrer"
+          >
+            Infrastructure source ↗
           </a>
         </div>
 
