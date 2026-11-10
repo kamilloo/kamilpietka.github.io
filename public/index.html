@@ -140,6 +140,14 @@
 
         <button
                 type="button"
+                data-view="ai-systems"
+                aria-pressed="false"
+        >
+          AI / LLM Systems
+        </button>
+
+        <button
+                type="button"
                 data-view="all"
                 class="secondary"
                 aria-pressed="false"
@@ -161,6 +169,10 @@
       <span>TypeScript</span>
       <span>Node.js</span>
       <span>Python</span>
+      <span>Pydantic</span>
+      <span>Gemini API</span>
+      <span>SQLite</span>
+      <span>pytest</span>
       <span>AWS</span>
       <span>Docker</span>
       <span>SQL</span>
@@ -188,7 +200,7 @@
             data-projects-description
     >
       Real projects demonstrating how I design, build and deliver software —
-      from backend architecture and AWS systems to deployment and product release.
+      from backend architecture and AWS systems to evidence-aware AI assessment, deployment and product release.
     </p>
 
 
@@ -196,6 +208,97 @@
             class="project-list"
             data-project-list
     >
+
+      <!-- AI JOB HUNTER -->
+      <article
+              id="ai-job-hunter"
+              class="project featured"
+              data-project="ai-job-hunter"
+              data-skills="ai-systems backend system-design product-delivery"
+      >
+        <p class="project-kicker">ATS integrations & evidence-aware AI assessment</p>
+        <h3>AI Job Hunter</h3>
+
+        <p>
+          An open-source Python CLI that discovers jobs from Greenhouse, Lever
+          and Ashby, screens them against a configurable candidate profile,
+          and produces explainable recommendations. An optional Gemini assessor
+          compares technical requirements with documented candidate experience.
+        </p>
+
+        <figure class="project-demo" id="ai-job-hunter-demo">
+          <video
+                  controls
+                  playsinline
+                  preload="none"
+                  poster="assets/ai-job-hunter-cover.png"
+                  aria-label="AI Job Hunter demo in English"
+                  aria-describedby="ai-job-hunter-demo-caption"
+                  width="1672"
+                  height="941"
+          >
+            <source src="assets/ai-job-hunter-demo-en.mp4" type="video/mp4">
+            <a href="assets/ai-job-hunter-demo-en.mp4">Download the AI Job Hunter demo</a>
+          </video>
+          <figcaption id="ai-job-hunter-demo-caption">
+            From ChatGPT to AI Job Hunter — job discovery, deterministic screening
+            and AI-assisted technical assessment. Demo in English.
+          </figcaption>
+        </figure>
+
+        <p class="project-proof">
+          <strong>What this proves:</strong>
+          I can integrate external data sources, combine deterministic rules with
+          structured LLM output, validate evidence, and investigate failures
+          through reproducible evaluations.
+        </p>
+
+        <ul class="highlights">
+          <li>Public ATS APIs → Pydantic validation and deduplication → SQLite tracking → Markdown reports</li>
+          <li>Hard eligibility constraints stay separate from ranking; AI cannot override a deterministic review or rejection</li>
+          <li>Structured technical assessments with employer and candidate quotation checks; unverified mandatory skills require review</li>
+          <li>Offline labeled fixtures, optional live Gemini regressions and saved JSON report comparisons</li>
+          <li>Bounded retries, partial discovery recovery, structured logs, latency and token-usage reporting</li>
+        </ul>
+
+        <div class="engineering-note">
+          <span class="engineering-note-label">Engineering decision</span>
+          <p>
+            Keep hard rules authoritative and treat model output as untrusted.
+            Validate quotations against the job description and recorded experience;
+            missing or invalid evidence leads to review. Quotation provenance
+            establishes where evidence came from, not whether it proves a skill.
+          </p>
+        </div>
+
+        <div class="engineering-note">
+          <span class="engineering-note-label">Evaluation evidence</span>
+          <p>
+            The documented deterministic baseline matched 12/12 curated reference
+            labels; a separate focused live Gemini regression baseline passed 4/4
+            cases. These small regression datasets help catch known mistakes;
+            they do not establish accuracy on unseen jobs.
+          </p>
+        </div>
+
+        <div class="skill-proof" aria-label="Skills demonstrated">
+          <span>AI / LLM Systems</span>
+          <span>Backend</span>
+          <span>System Design</span>
+          <span>Product Delivery</span>
+        </div>
+
+        <div class="project-links">
+          <a class="project-primary-link" href="https://github.com/kamilloo/AI-Job-Hunter" target="_blank" rel="noopener noreferrer">
+            Explore source & README ↗
+          </a>
+          <a href="https://github.com/kamilloo/AI-Job-Hunter/blob/master/docs/EVALUATION.md" target="_blank" rel="noopener noreferrer">
+            Evaluation methodology ↗
+          </a>
+          <a href="assets/ai-job-hunter-demo-en.mp4">Open video demo ↗</a>
+        </div>
+      </article>
+
 
       <!-- VOUCHERS -->
       <article
@@ -557,6 +660,17 @@
     <h2>What I bring to a team</h2>
 
     <div class="strength-grid">
+      <article class="strength-card">
+        <h3>Evidence-aware AI systems</h3>
+        <p>
+          In AI Job Hunter, I combine deterministic eligibility rules with
+          structured LLM assessments, validate quoted evidence and preserve
+          uncertainty. Offline fixtures and focused live regressions make
+          known failure modes measurable.
+        </p>
+        <a href="?view=ai-systems#projects">See AI engineering evidence →</a>
+      </article>
+
       <article class="strength-card">
         <h3>Backend ownership</h3>
         <p>

@@ -1,6 +1,7 @@
 const Portfolio = (() => {
     const VALID_VIEWS = [
         "all",
+        "ai-systems",
         "backend",
         "cloud",
         "system-design",
@@ -12,6 +13,12 @@ const Portfolio = (() => {
         all: {
             title: "Engineering Evidence",
             description: "Explore my strongest engineering projects."
+        },
+
+        "ai-systems": {
+            title: "AI / LLM systems",
+            description:
+                "ATS integrations, structured AI assessment, evidence validation and reproducible evaluations in AI Job Hunter."
         },
 
         backend: {
