@@ -22,6 +22,21 @@ I focus on building software that is testable, maintainable, and deployable in r
 
 ## Featured Projects
 
+### AI Job Hunter
+
+Evidence-aware job discovery and technical assessment in a Python CLI.
+Collects public Greenhouse, Lever and Ashby postings, applies deterministic
+eligibility gates, and optionally uses Gemini to assess technical requirements
+against documented candidate experience. Includes quotation validation,
+SQLite tracking, Markdown reports, reproducible evaluations and operational diagnostics.
+
+Technologies: Python, Pydantic, Gemini API, SQLite and pytest.
+
+Repository: https://github.com/kamilloo/AI-Job-Hunter
+
+The portfolio includes an English video demo and the supplied project cover in
+`public/assets/`. The AI / LLM Systems focus is available at `?view=ai-systems#projects`.
+
 ### Vouchers
 
 Full-stack voucher application with a Laravel backend and separate client application.

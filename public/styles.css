@@ -669,3 +669,50 @@ a:focus-visible {
     flex: 1 1 calc(50% - 8px);
   }
 }
+/* PROJECT DEMO */
+
+.project-demo {
+  margin: 28px 0;
+}
+
+.project-demo video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #030c16;
+}
+
+.project-demo video:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.project-demo figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+#ai-job-hunter,
+#ai-job-hunter-demo {
+  scroll-margin-top: 90px;
+}
+
+.project-demo + details summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.project-demo + details summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.project-demo + details[open] summary {
+  margin-bottom: 10px;
+}
