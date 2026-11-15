@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+cd "$(dirname "$0")"
+python3 scripts/build.py
+python3 -m unittest discover -s tests -v
+node --test tests/portfolio.test.cjs
+
 : "${VPS_HOST:?VPS_HOST is not configured}"
 : "${VPS_USER:?VPS_USER is not configured}"
 : "${VPS_SSH_KEY_B64:?VPS_SSH_KEY_B64 is not configured}"

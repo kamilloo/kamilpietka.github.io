@@ -101,3 +101,14 @@ Caddy
    |
    v
 Static portfolio site
+## Case study pages
+
+Project content lives in `content/projects.json`; shared templates generate complete static HTML and the sitemap. Keep generated `public/` files committed for deployment.
+
+```sh
+python3 scripts/build.py
+python3 -m unittest discover -s tests -v
+node --test tests/portfolio.test.cjs
+```
+
+See [case study maintenance, inventory and verification](docs/case-studies.md) for evidence sources, routing, adding projects and remaining limitations.

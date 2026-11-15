@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Job Hunter — Engineering Case Study | Kamil Piętka</title>
+  <meta name="description" content="Engineering case study of a job discovery and assessment system combining ATS integrations, deterministic screening, structured LLM evaluation and evidence validation.">
+  <link rel="canonical" href="https://kamilpietka.dev/projects/ai-job-hunter/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Job Hunter — Engineering Case Study | Kamil Piętka">
+  <meta property="og:description" content="Engineering case study of a job discovery and assessment system combining ATS integrations, deterministic screening, structured LLM evaluation and evidence validation.">
+  <meta property="og:url" content="https://kamilpietka.dev/projects/ai-job-hunter/">
+  <meta property="og:site_name" content="Kamil Piętka">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Job Hunter — Engineering Case Study | Kamil Piętka">
+  <meta name="twitter:description" content="Engineering case study of a job discovery and assessment system combining ATS integrations, deterministic screening, structured LLM evaluation and evidence validation.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://kamilpietka.dev/projects/ai-job-hunter/#webpage", "url": "https://kamilpietka.dev/projects/ai-job-hunter/", "name": "AI Job Hunter — Engineering Case Study | Kamil Piętka", "description": "Engineering case study of a job discovery and assessment system combining ATS integrations, deterministic screening, structured LLM evaluation and evidence validation.", "inLanguage": "en", "isPartOf": {"@id": "https://kamilpietka.dev/#website"}, "breadcrumb": {"@id": "https://kamilpietka.dev/projects/ai-job-hunter/#breadcrumbs"}, "mainEntity": {"@id": "https://kamilpietka.dev/projects/ai-job-hunter/#project"}}, {"@type": "BreadcrumbList", "@id": "https://kamilpietka.dev/projects/ai-job-hunter/#breadcrumbs", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kamilpietka.dev/"}, {"@type": "ListItem", "position": 2, "name": "AI Job Hunter", "item": "https://kamilpietka.dev/projects/ai-job-hunter/"}]}, {"@type": "CreativeWork", "@id": "https://kamilpietka.dev/projects/ai-job-hunter/#project", "name": "AI Job Hunter", "description": "An open-source Python CLI that discovers jobs from Greenhouse, Lever and Ashby, screens them against a configurable candidate profile, and produces explainable recommendations. An optional Gemini assessor compares technical requirements with documented candidate experience.", "author": {"@id": "https://kamilpietka.dev/#person"}, "mainEntityOfPage": {"@id": "https://kamilpietka.dev/projects/ai-job-hunter/#webpage"}}]}</script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="case-page">
+<a class="skip-link button" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/#top" aria-label="KP — Kamil Piętka homepage">KP</a>
+    <nav aria-label="Primary navigation">
+      <a href="/#projects">Projects</a>
+      <a href="/#about">About</a>
+      <a href="https://github.com/kamilloo">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="wrap case-study">
+  <article>
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span aria-current="page">AI Job Hunter</span></nav>
+    <header>
+      <p class="eyebrow">ATS integrations &amp; evidence-aware AI assessment</p>
+      <h1>AI Job Hunter</h1>
+      <p class="lead">An open-source Python CLI that discovers jobs from Greenhouse, Lever and Ashby, screens them against a configurable candidate profile, and produces explainable recommendations. An optional Gemini assessor compares technical requirements with documented candidate experience.</p>
+      <div class="stack" aria-label="Project technologies"><span>Python</span><span>Pydantic</span><span>Gemini API</span><span>SQLite</span><span>pytest</span></div>
+      <div class="actions"><a class="button" href="https://github.com/kamilloo/AI-Job-Hunter">Explore source &amp; README ↗</a>
+<a class="button" href="https://github.com/kamilloo/AI-Job-Hunter/blob/master/docs/EVALUATION.md">Evaluation methodology ↗</a>
+<a class="button" href="/assets/ai-job-hunter-demo-en.mp4">Open video demo ↗</a></div>
+    </header>
+    <section aria-labelledby="section-0"><h2 id="section-0">Overview</h2><p>Job discovery combines public Greenhouse, Lever and Ashby postings with a configurable candidate profile. The CLI separates eligibility decisions from fit ranking and produces explainable Markdown reports rather than hiding uncertainty behind a score.</p></section>
+<section aria-labelledby="section-1"><h2 id="section-1">Architecture and data flow</h2><p>ATS APIs → validated and deduplicated job records → deterministic eligibility → optional Gemini technical assessment → SQLite tracking and Markdown reports. Pydantic validates job data and structured assessment output. Hard restrictions remain authoritative when results are combined.</p></section>
+<section aria-labelledby="section-2"><h2 id="section-2">Engineering decisions</h2><p>Model output is treated as untrusted input. Employer quotations are checked against the job description, and candidate quotations against recorded experience. Valid provenance establishes where text came from; it does not establish that the text proves proficiency. Missing or invalid mandatory-skill evidence requires review.</p></section>
+<section aria-labelledby="section-3"><h2 id="section-3">Implementation and reliability</h2><p>Deterministic gates handle eligibility separately from technical assessment. A deterministic rejection stays rejected, and review cannot be promoted by AI. Bounded retries and partial discovery recovery prevent a single source failure from silently defining the whole search. Structured logs and latency and token-usage reporting support diagnosis.</p></section>
+<section aria-labelledby="section-4"><h2 id="section-4">Testing and evaluation</h2><p>Version-controlled job snapshots, reference labels and a candidate profile drive evaluations through production decision logic. Offline deterministic runs are separate from optional live Gemini regressions. Saved JSON artifacts make individual decisions comparable. The documented baseline matched 12 of 12 curated deterministic labels and passed 4 of 4 focused live regression cases; these small datasets do not establish accuracy on unseen postings.</p></section>
+<section aria-labelledby="section-5"><h2 id="section-5">Outcomes and lessons</h2><p>The project demonstrates a working boundary between deterministic policy and probabilistic assessment. Explainability requires preserving source evidence and uncertainty, not merely requesting a model explanation. Broader reference datasets and repeated live runs would strengthen evidence of generalization.</p></section>
+    <section aria-labelledby="sources"><h2 id="sources">Source evidence</h2><div class="project-links"><a href="https://github.com/kamilloo/AI-Job-Hunter/blob/master/README.md">README</a>
+<a href="https://github.com/kamilloo/AI-Job-Hunter/blob/master/docs/EVALUATION.md">Evaluation methodology</a></div></section>
+  </article>
+  <section aria-labelledby="related"><h2 id="related">Related projects</h2><div class="strength-grid"><article class="strength-card"><h3><a href="/projects/vouchers/">Vouchers</a></h3><p>Backend systems &amp; production engineering</p></article><article class="strength-card"><h3><a href="/projects/aws-data-engineering/">AWS Data Engineering Labs</a></h3><p>Cloud architecture &amp; data engineering</p></article></div></section>
+  <nav class="project-links case-navigation" aria-label="Case study navigation">
+    <a href="/#projects">← Back to projects</a>
+    <a href="/projects/vouchers/">Next: Vouchers →</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+</main>
+<footer class="wrap footer"><p>© 2026 Kamil Piętka</p><a href="https://github.com/kamilloo">github.com/kamilloo ↗</a></footer>
+</body>
+</html>

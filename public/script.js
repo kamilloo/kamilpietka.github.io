@@ -254,7 +254,7 @@ const Portfolio = (() => {
         document
             .querySelector("#projects")
             ?.scrollIntoView({
-                behavior: "smooth",
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
                 block: "start"
             });
     }

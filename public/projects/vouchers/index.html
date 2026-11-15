@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vouchers — Backend Architecture Case Study | Kamil Piętka</title>
+  <meta name="description" content="Explore the architecture, API design, data validation, automated testing and deployment decisions behind the Vouchers application.">
+  <link rel="canonical" href="https://kamilpietka.dev/projects/vouchers/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Vouchers — Backend Architecture Case Study | Kamil Piętka">
+  <meta property="og:description" content="Explore the architecture, API design, data validation, automated testing and deployment decisions behind the Vouchers application.">
+  <meta property="og:url" content="https://kamilpietka.dev/projects/vouchers/">
+  <meta property="og:site_name" content="Kamil Piętka">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Vouchers — Backend Architecture Case Study | Kamil Piętka">
+  <meta name="twitter:description" content="Explore the architecture, API design, data validation, automated testing and deployment decisions behind the Vouchers application.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://kamilpietka.dev/projects/vouchers/#webpage", "url": "https://kamilpietka.dev/projects/vouchers/", "name": "Vouchers — Backend Architecture Case Study | Kamil Piętka", "description": "Explore the architecture, API design, data validation, automated testing and deployment decisions behind the Vouchers application.", "inLanguage": "en", "isPartOf": {"@id": "https://kamilpietka.dev/#website"}, "breadcrumb": {"@id": "https://kamilpietka.dev/projects/vouchers/#breadcrumbs"}, "mainEntity": {"@id": "https://kamilpietka.dev/projects/vouchers/#project"}}, {"@type": "BreadcrumbList", "@id": "https://kamilpietka.dev/projects/vouchers/#breadcrumbs", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kamilpietka.dev/"}, {"@type": "ListItem", "position": 2, "name": "Vouchers", "item": "https://kamilpietka.dev/projects/vouchers/"}]}, {"@type": "CreativeWork", "@id": "https://kamilpietka.dev/projects/vouchers/#project", "name": "Vouchers", "description": "A full-stack voucher platform built around a Laravel backend and a separate TypeScript client, designed to demonstrate API structure, database modelling, automated testing and production deployment.", "author": {"@id": "https://kamilpietka.dev/#person"}, "mainEntityOfPage": {"@id": "https://kamilpietka.dev/projects/vouchers/#webpage"}}]}</script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="case-page">
+<a class="skip-link button" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/#top" aria-label="KP — Kamil Piętka homepage">KP</a>
+    <nav aria-label="Primary navigation">
+      <a href="/#projects">Projects</a>
+      <a href="/#about">About</a>
+      <a href="https://github.com/kamilloo">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="wrap case-study">
+  <article>
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span aria-current="page">Vouchers</span></nav>
+    <header>
+      <p class="eyebrow">Backend systems &amp; production engineering</p>
+      <h1>Vouchers</h1>
+      <p class="lead">A full-stack voucher platform built around a Laravel backend and a separate TypeScript client, designed to demonstrate API structure, database modelling, automated testing and production deployment.</p>
+      <div class="stack" aria-label="Project technologies"><span>Laravel</span><span>TypeScript</span><span>MySQL</span><span>Docker</span></div>
+      <div class="actions"><a class="button" href="https://api-vouchers.kamilpietka.dev/">Live web app ↗</a>
+<a class="button" href="https://github.com/kamilloo/vouchers">Backend source ↗</a>
+<a class="button" href="https://github.com/kamilloo/vouchers-app">Frontend source ↗</a></div>
+    </header>
+    <section aria-labelledby="section-0"><h2 id="section-0">Overview</h2><p>Vouchers separates a Laravel backend from a TypeScript client. The backend owns voucher and order state, while authenticated API endpoints allow the client to retrieve a voucher by QR code and request redemption.</p></section>
+<section aria-labelledby="section-1"><h2 id="section-1">Architecture and application boundaries</h2><p>The API routes use auth:api middleware for voucher lookup and redemption. The controller queries orders through Order::toMe(), loads related voucher, product and payment data, and returns an OrderResource. Database models represent persistent state; JSON resources define the response boundary seen by the client.</p></section>
+<section aria-labelledby="section-2"><h2 id="section-2">Implementation and validation</h2><p>GET /api/vouchers/{qr_code} retrieves an order; POST /api/vouchers/{qr_code}/pay performs redemption checks. Before changing state, the controller rejects unpaid, expired or already used orders. A successful operation calls the order payment method and dispatches VoucherWasReleased. These are server-side decisions rather than client-only checks.</p></section>
+<section aria-labelledby="section-3"><h2 id="section-3">Engineering decisions and trade-offs</h2><p>Keeping redemption rules in the backend gives separate clients a shared decision point. Resource serialization keeps response shape distinct from model storage. The inspected controller performs sequential state checks; this alone does not prove protection against concurrent redemption requests. Concurrency guarantees require a separate transaction and locking review.</p></section>
+<section aria-labelledby="section-4"><h2 id="section-4">Testing and deployment</h2><p>Feature tests use RefreshDatabase and factories to check missing orders, JSON response shape, persisted used_at values and rejection of unpaid, expired and used vouchers. Model tests check merchant filtering. These tests were inspected, not executed as part of this portfolio change. Deployment evidence describes Caddy → Nginx → PHP-FPM → Laravel with MySQL in a persistent volume.</p></section>
+<section aria-labelledby="section-5"><h2 id="section-5">Outcomes and limitations</h2><p>The source provides concrete examples of backend validation, API serialization and database assertions. Deployment HTTP checks demonstrate service reachability, not complete authenticated workflow correctness. The deployment document identifies legacy runtime upgrades and regression testing after dependency removal as follow-up work.</p></section>
+    <section aria-labelledby="sources"><h2 id="sources">Source evidence</h2><div class="project-links"><a href="https://github.com/kamilloo/vouchers/blob/master/routes/api.php">API routes</a>
+<a href="https://github.com/kamilloo/vouchers/blob/master/app/Http/Controllers/Api/VoucherController.php">Voucher controller</a>
+<a href="https://github.com/kamilloo/vouchers/blob/master/tests/Feature/app/Http/Controllers/Api/VoucherControllerTest.php">API feature tests</a>
+<a href="https://github.com/kamilloo/kamilpietka-devops/blob/main/docs/production-case-study.md">Deployment evidence</a></div></section>
+  </article>
+  <section aria-labelledby="related"><h2 id="related">Related projects</h2><div class="strength-grid"><article class="strength-card"><h3><a href="/projects/production-infrastructure/">Production Infrastructure &amp; Deployment</a></h3><p>Production infrastructure &amp; DevOps</p></article><article class="strength-card"><h3><a href="/projects/ai-job-hunter/">AI Job Hunter</a></h3><p>ATS integrations &amp; evidence-aware AI assessment</p></article></div></section>
+  <nav class="project-links case-navigation" aria-label="Case study navigation">
+    <a href="/#projects">← Back to projects</a>
+    <a href="/projects/aws-data-engineering/">Next: AWS Data Engineering Labs →</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+</main>
+<footer class="wrap footer"><p>© 2026 Kamil Piętka</p><a href="https://github.com/kamilloo">github.com/kamilloo ↗</a></footer>
+</body>
+</html>
