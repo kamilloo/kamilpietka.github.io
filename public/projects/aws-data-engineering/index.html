@@ -3,97 +3,59 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="AWS Data Engineering Labs — batch analytics and streaming architecture case study by Kamil Piętka.">
-  <title>AWS Data Engineering Labs — Architecture Case Study | Kamil Piętka</title>
+  <title>AWS Data Engineering Labs — Cloud Architecture Case Study | Kamil Piętka</title>
+  <meta name="description" content="Technical case study exploring batch and streaming data pipelines, cloud architecture decisions, processing models and data persistence.">
   <link rel="canonical" href="https://kamilpietka.dev/projects/aws-data-engineering/">
-  <link rel="stylesheet" href="../../styles.css">
-  <style>
-    .case-study { max-width: 850px; padding-top: 90px; padding-bottom: 100px; }
-    .case-study h1 { font-size: clamp(2.7rem, 6vw, 4.5rem); line-height: 1.1; margin: 12px 0 24px; }
-    .case-study h2 { margin: 52px 0 14px; font-size: 1.7rem; }
-    .case-study p, .case-study li { line-height: 1.75; }
-    .case-study .intro { font-size: 1.2rem; color: var(--muted); }
-    .case-study .links { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 30px; }
-    .case-study .links a { padding: 11px 17px; border: 1px solid var(--line); border-radius: 8px; text-decoration: none; }
-    .case-study .links a:hover { border-color: var(--accent); }
-    .case-study .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 24px; margin-top: 24px; }
-    .case-study .panel h2 { margin-top: 0; }
-    .case-study a:not(.links a) { color: var(--accent); }
-    .case-study .muted { color: var(--muted); }
-  </style>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AWS Data Engineering Labs — Cloud Architecture Case Study | Kamil Piętka">
+  <meta property="og:description" content="Technical case study exploring batch and streaming data pipelines, cloud architecture decisions, processing models and data persistence.">
+  <meta property="og:url" content="https://kamilpietka.dev/projects/aws-data-engineering/">
+  <meta property="og:site_name" content="Kamil Piętka">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AWS Data Engineering Labs — Cloud Architecture Case Study | Kamil Piętka">
+  <meta name="twitter:description" content="Technical case study exploring batch and streaming data pipelines, cloud architecture decisions, processing models and data persistence.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://kamilpietka.dev/projects/aws-data-engineering/#webpage", "url": "https://kamilpietka.dev/projects/aws-data-engineering/", "name": "AWS Data Engineering Labs — Cloud Architecture Case Study | Kamil Piętka", "description": "Technical case study exploring batch and streaming data pipelines, cloud architecture decisions, processing models and data persistence.", "inLanguage": "en", "isPartOf": {"@id": "https://kamilpietka.dev/#website"}, "breadcrumb": {"@id": "https://kamilpietka.dev/projects/aws-data-engineering/#breadcrumbs"}, "mainEntity": {"@id": "https://kamilpietka.dev/projects/aws-data-engineering/#project"}}, {"@type": "BreadcrumbList", "@id": "https://kamilpietka.dev/projects/aws-data-engineering/#breadcrumbs", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kamilpietka.dev/"}, {"@type": "ListItem", "position": 2, "name": "AWS Data Engineering Labs", "item": "https://kamilpietka.dev/projects/aws-data-engineering/"}]}, {"@type": "CreativeWork", "@id": "https://kamilpietka.dev/projects/aws-data-engineering/#project", "name": "AWS Data Engineering Labs", "description": "Two AWS data pipelines exploring different processing models: batch analytics and real-time event processing.", "author": {"@id": "https://kamilpietka.dev/#person"}, "mainEntityOfPage": {"@id": "https://kamilpietka.dev/projects/aws-data-engineering/#webpage"}}]}</script>
+  <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
-  <header class="site-header">
-    <div class="wrap nav">
-      <a class="brand" href="/#top" aria-label="KP — Back to Kamil Piętka portfolio">KP</a>
-      <nav aria-label="Primary navigation">
-        <a href="/#projects">← All projects</a>
-        <a href="https://github.com/kamilloo/aws-data-engineering-labs-etl-elt" target="_blank" rel="noopener noreferrer">Source code ↗</a>
-      </nav>
-    </div>
-  </header>
-  <main class="wrap case-study">
-    <p class="eyebrow">Cloud Architecture · AWS · Data Engineering</p>
-    <h1>AWS Data Engineering Labs</h1>
-    <p class="intro">Two AWS pipeline designs exploring batch analytics and real-time event processing, with different choices for ingestion, compute, queries and persistence.</p>
-    <div class="links">
-      <a href="https://github.com/kamilloo/aws-data-engineering-labs-etl-elt" target="_blank" rel="noopener noreferrer">Explore source and documentation ↗</a>
-      <a href="/#projects">← Engineering Evidence</a>
-    </div>
-
-    <section class="panel" aria-labelledby="problem">
-      <h2 id="problem">Engineering question</h2>
-      <p>How should the design of a data pipeline change when the workload moves from periodic analytics to low-latency event processing? These labs compare the service boundaries and storage approaches of both models.</p>
-    </section>
-
-    <section aria-labelledby="batch">
-      <h2 id="batch">01 · Batch analytics architecture</h2>
-      <div class="panel">
-        <p><strong>Amazon S3 → AWS Glue → Amazon Athena</strong></p>
-        <p>Object storage provides the landing zone, Glue supports transformation and catalogue-oriented processing, and Athena enables SQL-based analysis of data stored in S3.</p>
-      </div>
-      <ul>
-        <li><strong>Focus:</strong> scheduled or periodic processing of collected datasets.</li>
-        <li><strong>Design consideration:</strong> data formats, transformation steps and query patterns matter more than immediate per-event responses.</li>
-      </ul>
-    </section>
-
-    <section aria-labelledby="streaming">
-      <h2 id="streaming">02 · Real-time event architecture</h2>
-      <div class="panel">
-        <p><strong>Amazon Kinesis → AWS Lambda → Amazon DynamoDB</strong></p>
-        <p>Kinesis provides event ingestion, Lambda handles event-driven processing, and DynamoDB stores results for low-latency access patterns.</p>
-      </div>
-      <ul>
-        <li><strong>Focus:</strong> responding to incoming events instead of waiting for a batch window.</li>
-        <li><strong>Design consideration:</strong> throughput, retry behavior, event ordering and idempotency become important concerns.</li>
-      </ul>
-    </section>
-
-    <section class="panel" aria-labelledby="tradeoffs">
-      <h2 id="tradeoffs">Key architecture trade-offs</h2>
-      <p><strong>Batch:</strong> simpler scheduling and query-oriented storage for workloads that tolerate processing delay.</p>
-      <p><strong>Streaming:</strong> lower processing latency, balanced against more demanding event-handling and operational design.</p>
-      <p>Neither is universally better; the choice depends on how quickly results are needed and how they are consumed.</p>
-    </section>
-
-    <section aria-labelledby="proof">
-      <h2 id="proof">What this project demonstrates</h2>
-      <ul>
-        <li>Comparing batch and streaming data architecture using managed AWS services.</li>
-        <li>Selecting services to match ingestion rate, processing latency and persistence needs.</li>
-        <li>Explaining architectural boundaries and the trade-offs behind them.</li>
-      </ul>
-    </section>
-
-    <section aria-labelledby="evidence">
-      <h2 id="evidence">Source and evidence</h2>
-      <p>Inspect the <a href="https://github.com/kamilloo/aws-data-engineering-labs-etl-elt" target="_blank" rel="noopener noreferrer">AWS Data Engineering Labs repository</a> for code, configurations and any available implementation details.</p>
-      <p class="muted">This case study summarizes the architectures described in the portfolio. It does not assert production traffic, performance benchmarks or costs that have not been independently verified.</p>
-    </section>
-
-    <div class="links"><a href="/#projects">← Back to Engineering Evidence</a></div>
-  </main>
-  <footer class="wrap footer"><p>© 2026 Kamil Piętka</p><a href="https://github.com/kamilloo" target="_blank" rel="noopener noreferrer">GitHub ↗</a></footer>
+<body class="case-page">
+<a class="skip-link button" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/#top" aria-label="KP — Kamil Piętka homepage">KP</a>
+    <nav aria-label="Primary navigation">
+      <a href="/#projects">Projects</a>
+      <a href="/#about">About</a>
+      <a href="https://github.com/kamilloo">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="wrap case-study">
+  <article>
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span aria-current="page">AWS Data Engineering Labs</span></nav>
+    <header>
+      <p class="eyebrow">Cloud architecture &amp; data engineering</p>
+      <h1>AWS Data Engineering Labs</h1>
+      <p class="lead">Two AWS data pipelines exploring different processing models: batch analytics and real-time event processing.</p>
+      <div class="stack" aria-label="Project technologies"><span>Amazon S3</span><span>AWS Glue</span><span>Amazon Athena</span><span>Amazon Kinesis</span><span>AWS Lambda</span><span>Amazon DynamoDB</span></div>
+      <div class="actions"><a class="button" href="https://github.com/kamilloo/aws-data-engineering-labs-etl-elt">Source ↗</a>
+<a class="button" href="https://github.com/kamilloo/aws-data-engineering-labs-real-time-processing">Streaming source ↗</a></div>
+    </header>
+    <section aria-labelledby="section-0"><h2 id="section-0">Overview</h2><p>These learning labs compare query-oriented batch processing with event-driven aggregation. Their scope is service composition and data movement, rather than a measured production workload.</p></section>
+<section aria-labelledby="section-1"><h2 id="section-1">Batch architecture: ETL and ELT</h2><p>Raw input lands in Amazon S3. The ELT-style demo queries raw data and applies SQL transformations with Athena. The ETL demo uses AWS Glue to clean and transform data into processed S3 output. This extends the homepage’s S3 → Glue → Athena overview with the separate raw-query path documented in the repository.</p></section>
+<section aria-labelledby="section-2"><h2 id="section-2">Streaming architecture</h2><p>Event producer → Kinesis stream → Lambda → DynamoDB. The lab configures an event-stream with one shard and a Python ProcessEvents function. EventCounts stores results with action as its string partition key; sample click and purchase events exercise the flow.</p></section>
+<section aria-labelledby="section-3"><h2 id="section-3">Service selection and trade-offs</h2><p>S3 retains datasets for query and transformation workflows. Athena supports SQL analysis without a separate application query service, while Glue provides a dedicated transformation step. Kinesis and Lambda instead process incoming events and persist action counters in DynamoDB. Batch tolerates waiting for dataset processing; streaming introduces event delivery and retry concerns. No measured latency comparison is available.</p></section>
+<section aria-labelledby="section-4"><h2 id="section-4">Validation and infrastructure considerations</h2><p>The streaming instructions verify processing through CloudWatch logs and increasing DynamoDB counters. Batch instructions run the supplied queries and scripts after uploading raw files. These are documented manual checks, not an automated test report. The example DynamoDB permission uses Resource: *; resource-scoped IAM and a review of retry and duplicate-event handling are needed before production use.</p></section>
+<section aria-labelledby="section-5"><h2 id="section-5">Outcomes and lessons</h2><p>The labs demonstrate distinct persistence and processing models using managed AWS services. Service selection follows the required result: querying datasets or reading event aggregates. Production scale, cost, delivery guarantees and automated infrastructure deployment are not established by the available evidence.</p></section>
+    <section aria-labelledby="sources"><h2 id="sources">Source evidence</h2><div class="project-links"><a href="https://github.com/kamilloo/aws-data-engineering-labs-etl-elt/blob/main/README.md">Batch lab README</a>
+<a href="https://github.com/kamilloo/aws-data-engineering-labs-real-time-processing/blob/main/README.md">Streaming lab README</a></div></section>
+  </article>
+  <section aria-labelledby="related"><h2 id="related">Related projects</h2><div class="strength-grid"><article class="strength-card"><h3><a href="/projects/production-infrastructure/">Production Infrastructure &amp; Deployment</a></h3><p>Production infrastructure &amp; DevOps</p></article><article class="strength-card"><h3><a href="/projects/ai-job-hunter/">AI Job Hunter</a></h3><p>ATS integrations &amp; evidence-aware AI assessment</p></article></div></section>
+  <nav class="project-links case-navigation" aria-label="Case study navigation">
+    <a href="/#projects">← Back to projects</a>
+    <a href="/projects/mojabiblioteka/">Next: Moja Biblioteka →</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+</main>
+<footer class="wrap footer"><p>© 2026 Kamil Piętka</p><a href="https://github.com/kamilloo">github.com/kamilloo ↗</a></footer>
 </body>
 </html>

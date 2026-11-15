@@ -1,0 +1,434 @@
+[
+  {
+    "slug": "ai-job-hunter",
+    "route": "ai-job-hunter",
+    "title": "AI Job Hunter",
+    "category": "ATS integrations & evidence-aware AI assessment",
+    "summary": "An open-source Python CLI that discovers jobs from Greenhouse, Lever and Ashby, screens them against a configurable candidate profile, and produces explainable recommendations. An optional Gemini assessor compares technical requirements with documented candidate experience.",
+    "links": [
+      {
+        "label": "Explore source & README ↗",
+        "url": "https://github.com/kamilloo/AI-Job-Hunter"
+      },
+      {
+        "label": "Evaluation methodology ↗",
+        "url": "https://github.com/kamilloo/AI-Job-Hunter/blob/master/docs/EVALUATION.md"
+      },
+      {
+        "label": "Open video demo ↗",
+        "url": "/assets/ai-job-hunter-demo-en.mp4"
+      }
+    ],
+    "technologies": [
+      "Python",
+      "Pydantic",
+      "Gemini API",
+      "SQLite",
+      "pytest"
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "paragraphs": [
+          "Job discovery combines public Greenhouse, Lever and Ashby postings with a configurable candidate profile. The CLI separates eligibility decisions from fit ranking and produces explainable Markdown reports rather than hiding uncertainty behind a score."
+        ]
+      },
+      {
+        "title": "Architecture and data flow",
+        "paragraphs": [
+          "ATS APIs → validated and deduplicated job records → deterministic eligibility → optional Gemini technical assessment → SQLite tracking and Markdown reports. Pydantic validates job data and structured assessment output. Hard restrictions remain authoritative when results are combined."
+        ]
+      },
+      {
+        "title": "Engineering decisions",
+        "paragraphs": [
+          "Model output is treated as untrusted input. Employer quotations are checked against the job description, and candidate quotations against recorded experience. Valid provenance establishes where text came from; it does not establish that the text proves proficiency. Missing or invalid mandatory-skill evidence requires review."
+        ]
+      },
+      {
+        "title": "Implementation and reliability",
+        "paragraphs": [
+          "Deterministic gates handle eligibility separately from technical assessment. A deterministic rejection stays rejected, and review cannot be promoted by AI. Bounded retries and partial discovery recovery prevent a single source failure from silently defining the whole search. Structured logs and latency and token-usage reporting support diagnosis."
+        ]
+      },
+      {
+        "title": "Testing and evaluation",
+        "paragraphs": [
+          "Version-controlled job snapshots, reference labels and a candidate profile drive evaluations through production decision logic. Offline deterministic runs are separate from optional live Gemini regressions. Saved JSON artifacts make individual decisions comparable. The documented baseline matched 12 of 12 curated deterministic labels and passed 4 of 4 focused live regression cases; these small datasets do not establish accuracy on unseen postings."
+        ]
+      },
+      {
+        "title": "Outcomes and lessons",
+        "paragraphs": [
+          "The project demonstrates a working boundary between deterministic policy and probabilistic assessment. Explainability requires preserving source evidence and uncertainty, not merely requesting a model explanation. Broader reference datasets and repeated live runs would strengthen evidence of generalization."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "README",
+        "url": "https://github.com/kamilloo/AI-Job-Hunter/blob/master/README.md"
+      },
+      {
+        "label": "Evaluation methodology",
+        "url": "https://github.com/kamilloo/AI-Job-Hunter/blob/master/docs/EVALUATION.md"
+      }
+    ],
+    "related": [
+      "vouchers",
+      "aws-data-engineering"
+    ],
+    "seo": {
+      "title": "AI Job Hunter — Engineering Case Study | Kamil Piętka",
+      "description": "Engineering case study of a job discovery and assessment system combining ATS integrations, deterministic screening, structured LLM evaluation and evidence validation."
+    }
+  },
+  {
+    "slug": "vouchers",
+    "route": "vouchers",
+    "title": "Vouchers",
+    "category": "Backend systems & production engineering",
+    "summary": "A full-stack voucher platform built around a Laravel backend and a separate TypeScript client, designed to demonstrate API structure, database modelling, automated testing and production deployment.",
+    "links": [
+      {
+        "label": "Live web app ↗",
+        "url": "https://api-vouchers.kamilpietka.dev/"
+      },
+      {
+        "label": "Backend source ↗",
+        "url": "https://github.com/kamilloo/vouchers"
+      },
+      {
+        "label": "Frontend source ↗",
+        "url": "https://github.com/kamilloo/vouchers-app"
+      }
+    ],
+    "technologies": [
+      "Laravel",
+      "TypeScript",
+      "MySQL",
+      "Docker"
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "paragraphs": [
+          "Vouchers separates a Laravel backend from a TypeScript client. The backend owns voucher and order state, while authenticated API endpoints allow the client to retrieve a voucher by QR code and request redemption."
+        ]
+      },
+      {
+        "title": "Architecture and application boundaries",
+        "paragraphs": [
+          "The API routes use auth:api middleware for voucher lookup and redemption. The controller queries orders through Order::toMe(), loads related voucher, product and payment data, and returns an OrderResource. Database models represent persistent state; JSON resources define the response boundary seen by the client."
+        ]
+      },
+      {
+        "title": "Implementation and validation",
+        "paragraphs": [
+          "GET /api/vouchers/{qr_code} retrieves an order; POST /api/vouchers/{qr_code}/pay performs redemption checks. Before changing state, the controller rejects unpaid, expired or already used orders. A successful operation calls the order payment method and dispatches VoucherWasReleased. These are server-side decisions rather than client-only checks."
+        ]
+      },
+      {
+        "title": "Engineering decisions and trade-offs",
+        "paragraphs": [
+          "Keeping redemption rules in the backend gives separate clients a shared decision point. Resource serialization keeps response shape distinct from model storage. The inspected controller performs sequential state checks; this alone does not prove protection against concurrent redemption requests. Concurrency guarantees require a separate transaction and locking review."
+        ]
+      },
+      {
+        "title": "Testing and deployment",
+        "paragraphs": [
+          "Feature tests use RefreshDatabase and factories to check missing orders, JSON response shape, persisted used_at values and rejection of unpaid, expired and used vouchers. Model tests check merchant filtering. These tests were inspected, not executed as part of this portfolio change. Deployment evidence describes Caddy → Nginx → PHP-FPM → Laravel with MySQL in a persistent volume."
+        ]
+      },
+      {
+        "title": "Outcomes and limitations",
+        "paragraphs": [
+          "The source provides concrete examples of backend validation, API serialization and database assertions. Deployment HTTP checks demonstrate service reachability, not complete authenticated workflow correctness. The deployment document identifies legacy runtime upgrades and regression testing after dependency removal as follow-up work."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "API routes",
+        "url": "https://github.com/kamilloo/vouchers/blob/master/routes/api.php"
+      },
+      {
+        "label": "Voucher controller",
+        "url": "https://github.com/kamilloo/vouchers/blob/master/app/Http/Controllers/Api/VoucherController.php"
+      },
+      {
+        "label": "API feature tests",
+        "url": "https://github.com/kamilloo/vouchers/blob/master/tests/Feature/app/Http/Controllers/Api/VoucherControllerTest.php"
+      },
+      {
+        "label": "Deployment evidence",
+        "url": "https://github.com/kamilloo/kamilpietka-devops/blob/main/docs/production-case-study.md"
+      }
+    ],
+    "related": [
+      "production-infrastructure",
+      "ai-job-hunter"
+    ],
+    "seo": {
+      "title": "Vouchers — Backend Architecture Case Study | Kamil Piętka",
+      "description": "Explore the architecture, API design, data validation, automated testing and deployment decisions behind the Vouchers application."
+    }
+  },
+  {
+    "slug": "aws-data-engineering",
+    "route": "aws-data-engineering",
+    "title": "AWS Data Engineering Labs",
+    "category": "Cloud architecture & data engineering",
+    "summary": "Two AWS data pipelines exploring different processing models: batch analytics and real-time event processing.",
+    "links": [
+      {
+        "label": "Source ↗",
+        "url": "https://github.com/kamilloo/aws-data-engineering-labs-etl-elt"
+      },
+      {
+        "label": "Streaming source ↗",
+        "url": "https://github.com/kamilloo/aws-data-engineering-labs-real-time-processing"
+      }
+    ],
+    "technologies": [
+      "Amazon S3",
+      "AWS Glue",
+      "Amazon Athena",
+      "Amazon Kinesis",
+      "AWS Lambda",
+      "Amazon DynamoDB"
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "paragraphs": [
+          "These learning labs compare query-oriented batch processing with event-driven aggregation. Their scope is service composition and data movement, rather than a measured production workload."
+        ]
+      },
+      {
+        "title": "Batch architecture: ETL and ELT",
+        "paragraphs": [
+          "Raw input lands in Amazon S3. The ELT-style demo queries raw data and applies SQL transformations with Athena. The ETL demo uses AWS Glue to clean and transform data into processed S3 output. This extends the homepage’s S3 → Glue → Athena overview with the separate raw-query path documented in the repository."
+        ]
+      },
+      {
+        "title": "Streaming architecture",
+        "paragraphs": [
+          "Event producer → Kinesis stream → Lambda → DynamoDB. The lab configures an event-stream with one shard and a Python ProcessEvents function. EventCounts stores results with action as its string partition key; sample click and purchase events exercise the flow."
+        ]
+      },
+      {
+        "title": "Service selection and trade-offs",
+        "paragraphs": [
+          "S3 retains datasets for query and transformation workflows. Athena supports SQL analysis without a separate application query service, while Glue provides a dedicated transformation step. Kinesis and Lambda instead process incoming events and persist action counters in DynamoDB. Batch tolerates waiting for dataset processing; streaming introduces event delivery and retry concerns. No measured latency comparison is available."
+        ]
+      },
+      {
+        "title": "Validation and infrastructure considerations",
+        "paragraphs": [
+          "The streaming instructions verify processing through CloudWatch logs and increasing DynamoDB counters. Batch instructions run the supplied queries and scripts after uploading raw files. These are documented manual checks, not an automated test report. The example DynamoDB permission uses Resource: *; resource-scoped IAM and a review of retry and duplicate-event handling are needed before production use."
+        ]
+      },
+      {
+        "title": "Outcomes and lessons",
+        "paragraphs": [
+          "The labs demonstrate distinct persistence and processing models using managed AWS services. Service selection follows the required result: querying datasets or reading event aggregates. Production scale, cost, delivery guarantees and automated infrastructure deployment are not established by the available evidence."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Batch lab README",
+        "url": "https://github.com/kamilloo/aws-data-engineering-labs-etl-elt/blob/main/README.md"
+      },
+      {
+        "label": "Streaming lab README",
+        "url": "https://github.com/kamilloo/aws-data-engineering-labs-real-time-processing/blob/main/README.md"
+      }
+    ],
+    "related": [
+      "production-infrastructure",
+      "ai-job-hunter"
+    ],
+    "seo": {
+      "title": "AWS Data Engineering Labs — Cloud Architecture Case Study | Kamil Piętka",
+      "description": "Technical case study exploring batch and streaming data pipelines, cloud architecture decisions, processing models and data persistence."
+    }
+  },
+  {
+    "slug": "moja-biblioteka",
+    "route": "mojabiblioteka",
+    "title": "Moja Biblioteka",
+    "category": "End-to-end product delivery",
+    "summary": "A local-first Flutter application for cataloguing books, tracking lending and managing a personal library with barcode-based book discovery.",
+    "links": [
+      {
+        "label": "Live product ↗",
+        "url": "https://mojabiblioteka.app/"
+      },
+      {
+        "label": "Source ↗",
+        "url": "https://github.com/kamilloo/my-library-app"
+      }
+    ],
+    "technologies": [
+      "Flutter",
+      "Dart",
+      "SQLite",
+      "Open Library"
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "paragraphs": [
+          "Moja Biblioteka supports book cataloguing, search, reading status and lending history. Its local-first approach keeps everyday library management independent of a continuously available hosted backend."
+        ]
+      },
+      {
+        "title": "Architecture and offline behavior",
+        "paragraphs": [
+          "Flutter UI → application logic → on-device SQLite storage. ISBN and barcode discovery can request metadata from Open Library, while manual entry and local library access remain available offline. Remote cover images still require connectivity and use placeholders when unavailable."
+        ]
+      },
+      {
+        "title": "Implementation and data management",
+        "paragraphs": [
+          "The source documents UUIDs and timestamps, book details, lending and return flows. Open Library title or author searches are explicit requests, not requests on each keystroke. Selecting a result prefills the form without saving a book. Work-level search results do not supply an assumed physical-book ISBN; users can enter or scan the actual identifier."
+        ]
+      },
+      {
+        "title": "Engineering decisions and privacy",
+        "paragraphs": [
+          "Local storage reduces dependency on a remote service for core workflows. External metadata lookup remains a separate network operation. The privacy policy describes primarily on-device storage; local-first does not mean every integration is offline. Cross-device synchronization would need its own conflict and privacy model."
+        ]
+      },
+      {
+        "title": "Testing and product delivery",
+        "paragraphs": [
+          "Repository documentation defines formatting, static analysis, unit and widget tests, followed by a debug Android build in CI. SQLite regression and Android release documents track migration safety, signing and device QA. The product website and privacy pages support delivery preparation; this case study does not claim app-store approval or completed physical-device release testing."
+        ]
+      },
+      {
+        "title": "Outcomes and lessons",
+        "paragraphs": [
+          "The project connects local persistence, optional metadata discovery and release documentation in a single product. A useful offline experience requires clear boundaries: local records remain usable, while missing network metadata does not prevent manual cataloguing."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Application README",
+        "url": "https://github.com/kamilloo/my-library-app/blob/main/README.md"
+      },
+      {
+        "label": "SQLite regression audit",
+        "url": "https://github.com/kamilloo/my-library-app/blob/main/docs/sqlite_regression_audit.md"
+      },
+      {
+        "label": "Android release preparation",
+        "url": "https://github.com/kamilloo/my-library-app/blob/main/docs/android_release.md"
+      },
+      {
+        "label": "Privacy policy",
+        "url": "https://mojabiblioteka.app/privacy/"
+      }
+    ],
+    "related": [
+      "vouchers",
+      "production-infrastructure"
+    ],
+    "seo": {
+      "title": "Moja Biblioteka — Software Engineering Case Study | Kamil Piętka",
+      "description": "Explore the architecture and engineering decisions behind a local-first library application, including offline storage, integrations and product delivery."
+    }
+  },
+  {
+    "slug": "production-infrastructure",
+    "route": "production-infrastructure",
+    "title": "Production Infrastructure & Deployment",
+    "category": "Production infrastructure & DevOps",
+    "summary": "Designed and deployed a Docker-based VPS environment hosting this portfolio, the Vouchers frontend and Laravel API, and the public Moja Biblioteka website across six hostnames.",
+    "links": [
+      {
+        "label": "View architecture case study ↗",
+        "url": "https://github.com/kamilloo/kamilpietka-devops/blob/main/docs/production-case-study.md"
+      },
+      {
+        "label": "Infrastructure source ↗",
+        "url": "https://github.com/kamilloo/kamilpietka-devops"
+      }
+    ],
+    "technologies": [
+      "Docker Compose",
+      "Caddy",
+      "Nginx",
+      "PHP-FPM",
+      "MySQL",
+      "Linux VPS"
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "paragraphs": [
+          "One VPS hosts this portfolio, a Vouchers frontend and Laravel API, and the Moja Biblioteka website across six hostnames. The deployment case study documents HTTPS routing, application isolation and migration from a previous Compose deployment."
+        ]
+      },
+      {
+        "title": "Infrastructure architecture",
+        "paragraphs": [
+          "Cloudflare DNS/proxy for configured records → Caddy on ports 80 and 443. Caddy serves portfolio and product-site files, proxies the Vouchers frontend to its Nginx container, and forwards API HTTP traffic to a separate Nginx service. That service sends FastCGI requests to PHP-FPM, which accesses MySQL."
+        ]
+      },
+      {
+        "title": "Networking, HTTPS and persistence",
+        "paragraphs": [
+          "Only Caddy publishes web ports on the host. Caddy and public-facing Nginx services share the web network; the backend network is internal. PHP-FPM and MySQL publish no host ports. A named volume retains database data, and private environment files hold production secrets outside Git."
+        ]
+      },
+      {
+        "title": "Engineering decisions",
+        "paragraphs": [
+          "Separating HTTP handling from PHP execution avoids treating PHP-FPM port 9000 as an HTTP endpoint. An init service copies Laravel public assets into a shared volume for Nginx. Existing Caddy data and configuration volumes were reused during migration to retain state. The three Moja Biblioteka hostnames share a document root."
+        ]
+      },
+      {
+        "title": "Deployment verification and rollback",
+        "paragraphs": [
+          "Application images were built and integration-tested locally before publishing. The documented rollout checked container status, MySQL health, migration status and HTTP responses. The old Caddy container was retained as a rollback option. Four domains initially passed the health script; the two .app DNS records were later corrected and visited successfully. A subsequent six-domain health-script result is not recorded."
+        ]
+      },
+      {
+        "title": "Outcomes and operational limits",
+        "paragraphs": [
+          "The recorded deployment establishes service reachability and container integration. It does not establish high availability, automatic rollback or complete authenticated workflow correctness. The source identifies legacy runtime upgrades, Studio regression testing, automated database backups, monitoring and immutable image tags as follow-up work. Restoring application containers alone is not evidence of a tested database rollback."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Production case study",
+        "url": "https://github.com/kamilloo/kamilpietka-devops/blob/main/docs/production-case-study.md"
+      },
+      {
+        "label": "Compose configuration",
+        "url": "https://github.com/kamilloo/kamilpietka-devops/blob/main/compose.yml"
+      },
+      {
+        "label": "Caddy routing",
+        "url": "https://github.com/kamilloo/kamilpietka-devops/blob/main/Caddyfile"
+      },
+      {
+        "label": "Deployment instructions",
+        "url": "https://github.com/kamilloo/kamilpietka-devops/blob/main/docs/deployment.md"
+      }
+    ],
+    "related": [
+      "vouchers",
+      "aws-data-engineering"
+    ],
+    "seo": {
+      "title": "Production Infrastructure & Deployment — Cloud Deployment Case Study | Kamil Piętka",
+      "description": "Engineering case study covering containerized deployment, reverse proxy architecture, HTTPS, network isolation and production operations."
+    }
+  }
+]

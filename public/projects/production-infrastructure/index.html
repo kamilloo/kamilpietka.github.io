@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Production Infrastructure &amp; Deployment — Cloud Deployment Case Study | Kamil Piętka</title>
+  <meta name="description" content="Engineering case study covering containerized deployment, reverse proxy architecture, HTTPS, network isolation and production operations.">
+  <link rel="canonical" href="https://kamilpietka.dev/projects/production-infrastructure/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Production Infrastructure &amp; Deployment — Cloud Deployment Case Study | Kamil Piętka">
+  <meta property="og:description" content="Engineering case study covering containerized deployment, reverse proxy architecture, HTTPS, network isolation and production operations.">
+  <meta property="og:url" content="https://kamilpietka.dev/projects/production-infrastructure/">
+  <meta property="og:site_name" content="Kamil Piętka">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Production Infrastructure &amp; Deployment — Cloud Deployment Case Study | Kamil Piętka">
+  <meta name="twitter:description" content="Engineering case study covering containerized deployment, reverse proxy architecture, HTTPS, network isolation and production operations.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://kamilpietka.dev/projects/production-infrastructure/#webpage", "url": "https://kamilpietka.dev/projects/production-infrastructure/", "name": "Production Infrastructure & Deployment — Cloud Deployment Case Study | Kamil Piętka", "description": "Engineering case study covering containerized deployment, reverse proxy architecture, HTTPS, network isolation and production operations.", "inLanguage": "en", "isPartOf": {"@id": "https://kamilpietka.dev/#website"}, "breadcrumb": {"@id": "https://kamilpietka.dev/projects/production-infrastructure/#breadcrumbs"}, "mainEntity": {"@id": "https://kamilpietka.dev/projects/production-infrastructure/#project"}}, {"@type": "BreadcrumbList", "@id": "https://kamilpietka.dev/projects/production-infrastructure/#breadcrumbs", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kamilpietka.dev/"}, {"@type": "ListItem", "position": 2, "name": "Production Infrastructure & Deployment", "item": "https://kamilpietka.dev/projects/production-infrastructure/"}]}, {"@type": "CreativeWork", "@id": "https://kamilpietka.dev/projects/production-infrastructure/#project", "name": "Production Infrastructure & Deployment", "description": "Designed and deployed a Docker-based VPS environment hosting this portfolio, the Vouchers frontend and Laravel API, and the public Moja Biblioteka website across six hostnames.", "author": {"@id": "https://kamilpietka.dev/#person"}, "mainEntityOfPage": {"@id": "https://kamilpietka.dev/projects/production-infrastructure/#webpage"}}]}</script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="case-page">
+<a class="skip-link button" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/#top" aria-label="KP — Kamil Piętka homepage">KP</a>
+    <nav aria-label="Primary navigation">
+      <a href="/#projects">Projects</a>
+      <a href="/#about">About</a>
+      <a href="https://github.com/kamilloo">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="wrap case-study">
+  <article>
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span aria-current="page">Production Infrastructure &amp; Deployment</span></nav>
+    <header>
+      <p class="eyebrow">Production infrastructure &amp; DevOps</p>
+      <h1>Production Infrastructure &amp; Deployment</h1>
+      <p class="lead">Designed and deployed a Docker-based VPS environment hosting this portfolio, the Vouchers frontend and Laravel API, and the public Moja Biblioteka website across six hostnames.</p>
+      <div class="stack" aria-label="Project technologies"><span>Docker Compose</span><span>Caddy</span><span>Nginx</span><span>PHP-FPM</span><span>MySQL</span><span>Linux VPS</span></div>
+      <div class="actions"><a class="button" href="https://github.com/kamilloo/kamilpietka-devops/blob/main/docs/production-case-study.md">View architecture case study ↗</a>
+<a class="button" href="https://github.com/kamilloo/kamilpietka-devops">Infrastructure source ↗</a></div>
+    </header>
+    <section aria-labelledby="section-0"><h2 id="section-0">Overview</h2><p>One VPS hosts this portfolio, a Vouchers frontend and Laravel API, and the Moja Biblioteka website across six hostnames. The deployment case study documents HTTPS routing, application isolation and migration from a previous Compose deployment.</p></section>
+<section aria-labelledby="section-1"><h2 id="section-1">Infrastructure architecture</h2><p>Cloudflare DNS/proxy for configured records → Caddy on ports 80 and 443. Caddy serves portfolio and product-site files, proxies the Vouchers frontend to its Nginx container, and forwards API HTTP traffic to a separate Nginx service. That service sends FastCGI requests to PHP-FPM, which accesses MySQL.</p></section>
+<section aria-labelledby="section-2"><h2 id="section-2">Networking, HTTPS and persistence</h2><p>Only Caddy publishes web ports on the host. Caddy and public-facing Nginx services share the web network; the backend network is internal. PHP-FPM and MySQL publish no host ports. A named volume retains database data, and private environment files hold production secrets outside Git.</p></section>
+<section aria-labelledby="section-3"><h2 id="section-3">Engineering decisions</h2><p>Separating HTTP handling from PHP execution avoids treating PHP-FPM port 9000 as an HTTP endpoint. An init service copies Laravel public assets into a shared volume for Nginx. Existing Caddy data and configuration volumes were reused during migration to retain state. The three Moja Biblioteka hostnames share a document root.</p></section>
+<section aria-labelledby="section-4"><h2 id="section-4">Deployment verification and rollback</h2><p>Application images were built and integration-tested locally before publishing. The documented rollout checked container status, MySQL health, migration status and HTTP responses. The old Caddy container was retained as a rollback option. Four domains initially passed the health script; the two .app DNS records were later corrected and visited successfully. A subsequent six-domain health-script result is not recorded.</p></section>
+<section aria-labelledby="section-5"><h2 id="section-5">Outcomes and operational limits</h2><p>The recorded deployment establishes service reachability and container integration. It does not establish high availability, automatic rollback or complete authenticated workflow correctness. The source identifies legacy runtime upgrades, Studio regression testing, automated database backups, monitoring and immutable image tags as follow-up work. Restoring application containers alone is not evidence of a tested database rollback.</p></section>
+    <section aria-labelledby="sources"><h2 id="sources">Source evidence</h2><div class="project-links"><a href="https://github.com/kamilloo/kamilpietka-devops/blob/main/docs/production-case-study.md">Production case study</a>
+<a href="https://github.com/kamilloo/kamilpietka-devops/blob/main/compose.yml">Compose configuration</a>
+<a href="https://github.com/kamilloo/kamilpietka-devops/blob/main/Caddyfile">Caddy routing</a>
+<a href="https://github.com/kamilloo/kamilpietka-devops/blob/main/docs/deployment.md">Deployment instructions</a></div></section>
+  </article>
+  <section aria-labelledby="related"><h2 id="related">Related projects</h2><div class="strength-grid"><article class="strength-card"><h3><a href="/projects/vouchers/">Vouchers</a></h3><p>Backend systems &amp; production engineering</p></article><article class="strength-card"><h3><a href="/projects/aws-data-engineering/">AWS Data Engineering Labs</a></h3><p>Cloud architecture &amp; data engineering</p></article></div></section>
+  <nav class="project-links case-navigation" aria-label="Case study navigation">
+    <a href="/#projects">← Back to projects</a>
+    <a href="/projects/ai-job-hunter/">Next: AI Job Hunter →</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+</main>
+<footer class="wrap footer"><p>© 2026 Kamil Piętka</p><a href="https://github.com/kamilloo">github.com/kamilloo ↗</a></footer>
+</body>
+</html>

@@ -3,78 +3,61 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Moja Biblioteka — Flutter local-first personal library application. Engineering case study by Kamil Piętka.">
-  <title>Moja Biblioteka — Engineering Case Study | Kamil Piętka</title>
+  <title>Moja Biblioteka — Software Engineering Case Study | Kamil Piętka</title>
+  <meta name="description" content="Explore the architecture and engineering decisions behind a local-first library application, including offline storage, integrations and product delivery.">
   <link rel="canonical" href="https://kamilpietka.dev/projects/mojabiblioteka/">
-  <link rel="stylesheet" href="../../styles.css">
-  <style>
-    .case-study { max-width: 850px; padding-top: 90px; padding-bottom: 100px; }
-    .case-study h1 { font-size: clamp(2.7rem, 6vw, 4.5rem); line-height: 1.1; margin: 12px 0 24px; }
-    .case-study h2 { margin: 52px 0 14px; font-size: 1.7rem; }
-    .case-study p, .case-study li { line-height: 1.75; }
-    .case-study .intro { font-size: 1.2rem; color: var(--muted); }
-    .case-study .links { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 30px; }
-    .case-study .links a { padding: 11px 17px; border: 1px solid var(--line); border-radius: 8px; text-decoration: none; }
-    .case-study .links a:hover { border-color: var(--accent); }
-    .case-study .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 24px; margin-top: 24px; }
-    .case-study .panel h2 { margin-top: 0; }
-    .case-study a:not(.links a) { color: var(--accent); }
-    .case-study .muted { color: var(--muted); }
-  </style>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Moja Biblioteka — Software Engineering Case Study | Kamil Piętka">
+  <meta property="og:description" content="Explore the architecture and engineering decisions behind a local-first library application, including offline storage, integrations and product delivery.">
+  <meta property="og:url" content="https://kamilpietka.dev/projects/mojabiblioteka/">
+  <meta property="og:site_name" content="Kamil Piętka">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Moja Biblioteka — Software Engineering Case Study | Kamil Piętka">
+  <meta name="twitter:description" content="Explore the architecture and engineering decisions behind a local-first library application, including offline storage, integrations and product delivery.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://kamilpietka.dev/projects/mojabiblioteka/#webpage", "url": "https://kamilpietka.dev/projects/mojabiblioteka/", "name": "Moja Biblioteka — Software Engineering Case Study | Kamil Piętka", "description": "Explore the architecture and engineering decisions behind a local-first library application, including offline storage, integrations and product delivery.", "inLanguage": "en", "isPartOf": {"@id": "https://kamilpietka.dev/#website"}, "breadcrumb": {"@id": "https://kamilpietka.dev/projects/mojabiblioteka/#breadcrumbs"}, "mainEntity": {"@id": "https://kamilpietka.dev/projects/mojabiblioteka/#project"}}, {"@type": "BreadcrumbList", "@id": "https://kamilpietka.dev/projects/mojabiblioteka/#breadcrumbs", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kamilpietka.dev/"}, {"@type": "ListItem", "position": 2, "name": "Moja Biblioteka", "item": "https://kamilpietka.dev/projects/mojabiblioteka/"}]}, {"@type": "CreativeWork", "@id": "https://kamilpietka.dev/projects/mojabiblioteka/#project", "name": "Moja Biblioteka", "description": "A local-first Flutter application for cataloguing books, tracking lending and managing a personal library with barcode-based book discovery.", "author": {"@id": "https://kamilpietka.dev/#person"}, "mainEntityOfPage": {"@id": "https://kamilpietka.dev/projects/mojabiblioteka/#webpage"}}]}</script>
+  <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
-  <header class="site-header">
-    <div class="wrap nav">
-      <a class="brand" href="/#top" aria-label="KP — Back to Kamil Piętka portfolio">KP</a>
-      <nav aria-label="Primary navigation">
-        <a href="/#projects">← All projects</a>
-        <a href="https://github.com/kamilloo/my-library-app" target="_blank" rel="noopener noreferrer">Source code ↗</a>
-      </nav>
-    </div>
-  </header>
-  <main class="wrap case-study">
-    <p class="eyebrow">Product Delivery · Flutter · Mobile</p>
-    <h1>Moja Biblioteka</h1>
-    <p class="intro">A local-first personal library application for cataloguing books, tracking lending, and discovering book information through ISBN and barcode scanning.</p>
-    <div class="links">
-      <a href="https://mojabiblioteka.app/" target="_blank" rel="noopener noreferrer">Visit product website ↗</a>
-      <a href="https://github.com/kamilloo/my-library-app" target="_blank" rel="noopener noreferrer">Explore source code ↗</a>
-    </div>
-
-    <section class="panel" aria-labelledby="problem">
-      <h2 id="problem">The problem</h2>
-      <p>Managing a personal library should be useful even when network access is unavailable. The application aims to make book cataloguing, lending history, and reading status convenient without depending on a continuously available backend.</p>
-    </section>
-
-    <section aria-labelledby="approach">
-      <h2 id="approach">Engineering approach</h2>
-      <ul>
-        <li><strong>Local-first persistence:</strong> Flutter/Dart application with an on-device SQLite data store.</li>
-        <li><strong>Book discovery:</strong> ISBN and barcode scanning combined with Open Library metadata integration.</li>
-        <li><strong>Library workflows:</strong> Book collection, reading status, and lending history.</li>
-        <li><strong>Delivery:</strong> Consideration of privacy, release preparation, and a public-facing product website.</li>
-      </ul>
-    </section>
-
-    <section class="panel" aria-labelledby="architecture">
-      <h2 id="architecture">Architecture at a glance</h2>
-      <p><strong>Flutter UI → application logic → local SQLite storage</strong></p>
-      <p>For supported discovery flows, the app integrates external book metadata from Open Library. The local database keeps the core library experience available offline.</p>
-    </section>
-
-    <section aria-labelledby="tradeoffs">
-      <h2 id="tradeoffs">Key trade-off</h2>
-      <p>A local-first design reduces the dependency on a hosted backend for everyday book management. It also means that device-to-device synchronization, if added later, needs an explicit conflict-resolution and privacy model rather than being assumed to work automatically.</p>
-    </section>
-
-    <section aria-labelledby="evidence">
-      <h2 id="evidence">Project evidence</h2>
-      <p>Review the <a href="https://github.com/kamilloo/my-library-app" target="_blank" rel="noopener noreferrer">Flutter source repository</a> for implementation details, and the <a href="https://mojabiblioteka.app/" target="_blank" rel="noopener noreferrer">public site</a> for the product presentation.</p>
-      <p class="muted">This is an architecture and delivery overview; it does not claim independently verified usage metrics or app-store release statistics.</p>
-    </section>
-
-    <div class="links"><a href="/#projects">← Back to Engineering Evidence</a></div>
-  </main>
-  <footer class="wrap footer"><p>© 2026 Kamil Piętka</p><a href="https://github.com/kamilloo" target="_blank" rel="noopener noreferrer">GitHub ↗</a></footer>
+<body class="case-page">
+<a class="skip-link button" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/#top" aria-label="KP — Kamil Piętka homepage">KP</a>
+    <nav aria-label="Primary navigation">
+      <a href="/#projects">Projects</a>
+      <a href="/#about">About</a>
+      <a href="https://github.com/kamilloo">GitHub</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="wrap case-study">
+  <article>
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span aria-current="page">Moja Biblioteka</span></nav>
+    <header>
+      <p class="eyebrow">End-to-end product delivery</p>
+      <h1>Moja Biblioteka</h1>
+      <p class="lead">A local-first Flutter application for cataloguing books, tracking lending and managing a personal library with barcode-based book discovery.</p>
+      <div class="stack" aria-label="Project technologies"><span>Flutter</span><span>Dart</span><span>SQLite</span><span>Open Library</span></div>
+      <div class="actions"><a class="button" href="https://mojabiblioteka.app/">Live product ↗</a>
+<a class="button" href="https://github.com/kamilloo/my-library-app">Source ↗</a></div>
+    </header>
+    <section aria-labelledby="section-0"><h2 id="section-0">Overview</h2><p>Moja Biblioteka supports book cataloguing, search, reading status and lending history. Its local-first approach keeps everyday library management independent of a continuously available hosted backend.</p></section>
+<section aria-labelledby="section-1"><h2 id="section-1">Architecture and offline behavior</h2><p>Flutter UI → application logic → on-device SQLite storage. ISBN and barcode discovery can request metadata from Open Library, while manual entry and local library access remain available offline. Remote cover images still require connectivity and use placeholders when unavailable.</p></section>
+<section aria-labelledby="section-2"><h2 id="section-2">Implementation and data management</h2><p>The source documents UUIDs and timestamps, book details, lending and return flows. Open Library title or author searches are explicit requests, not requests on each keystroke. Selecting a result prefills the form without saving a book. Work-level search results do not supply an assumed physical-book ISBN; users can enter or scan the actual identifier.</p></section>
+<section aria-labelledby="section-3"><h2 id="section-3">Engineering decisions and privacy</h2><p>Local storage reduces dependency on a remote service for core workflows. External metadata lookup remains a separate network operation. The privacy policy describes primarily on-device storage; local-first does not mean every integration is offline. Cross-device synchronization would need its own conflict and privacy model.</p></section>
+<section aria-labelledby="section-4"><h2 id="section-4">Testing and product delivery</h2><p>Repository documentation defines formatting, static analysis, unit and widget tests, followed by a debug Android build in CI. SQLite regression and Android release documents track migration safety, signing and device QA. The product website and privacy pages support delivery preparation; this case study does not claim app-store approval or completed physical-device release testing.</p></section>
+<section aria-labelledby="section-5"><h2 id="section-5">Outcomes and lessons</h2><p>The project connects local persistence, optional metadata discovery and release documentation in a single product. A useful offline experience requires clear boundaries: local records remain usable, while missing network metadata does not prevent manual cataloguing.</p></section>
+    <section aria-labelledby="sources"><h2 id="sources">Source evidence</h2><div class="project-links"><a href="https://github.com/kamilloo/my-library-app/blob/main/README.md">Application README</a>
+<a href="https://github.com/kamilloo/my-library-app/blob/main/docs/sqlite_regression_audit.md">SQLite regression audit</a>
+<a href="https://github.com/kamilloo/my-library-app/blob/main/docs/android_release.md">Android release preparation</a>
+<a href="https://mojabiblioteka.app/privacy/">Privacy policy</a></div></section>
+  </article>
+  <section aria-labelledby="related"><h2 id="related">Related projects</h2><div class="strength-grid"><article class="strength-card"><h3><a href="/projects/vouchers/">Vouchers</a></h3><p>Backend systems &amp; production engineering</p></article><article class="strength-card"><h3><a href="/projects/production-infrastructure/">Production Infrastructure &amp; Deployment</a></h3><p>Production infrastructure &amp; DevOps</p></article></div></section>
+  <nav class="project-links case-navigation" aria-label="Case study navigation">
+    <a href="/#projects">← Back to projects</a>
+    <a href="/projects/production-infrastructure/">Next: Production Infrastructure &amp; Deployment →</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+</main>
+<footer class="wrap footer"><p>© 2026 Kamil Piętka</p><a href="https://github.com/kamilloo">github.com/kamilloo ↗</a></footer>
 </body>
 </html>
