@@ -734,6 +734,7 @@ a:focus-visible {
 .case-study h2 { margin: 48px 0 16px; font-size: clamp(1.4rem, 3vw, 1.8rem); line-height: 1.3; }
 .case-study p { max-width: 75ch; color: var(--muted); line-height: 1.8; }
 .case-study .lead { font-size: 1.15rem; }
+.case-study .eyebrow { color: var(--accent); }
 .case-study .project-links a, .breadcrumbs a { color: var(--accent); }
 .case-study .strength-card h3 { font-size: 1.2rem; }
 .case-study .strength-card p { margin-bottom: 0; }

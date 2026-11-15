@@ -1,0 +1,50 @@
+name: Validate portfolio PR
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-validation-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Generate static pages
+        run: python3 scripts/build.py
+
+      - name: Run Python tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Run Node tests
+        run: node --test tests/portfolio.test.cjs
+
+      - name: Verify generated files are committed
+        shell: bash
+        run: |
+          git diff --exit-code -- public/
+          untracked_files="$(git ls-files --others --exclude-standard -- public/)"
+          if [[ -n "$untracked_files" ]]; then
+            printf 'Generated files must be committed:\n%s\n' "$untracked_files"
+            exit 1
+          fi

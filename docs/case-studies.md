@@ -16,7 +16,7 @@ node --test tests/portfolio.test.cjs
 
 To add a project, add its record and supported content to the JSON, add a homepage card using the existing data attributes and `{{slug.title}}`, `{{slug.category}}`, `{{slug.summary}}` placeholders, and update relevant related-project relationships. Run the generator and tests and commit the sources and generated files together. Preserve old `route` values for public bookmarks. Do not hand-edit generated HTML. Sections without paragraphs are omitted.
 
-`deploy.sh` now builds and tests before its existing deployment operations. The existing `.github/workflows/deploy.yml.disabled` remains disabled and unchanged; automatic deployment has not been enabled. No deployment was performed in this task.
+`deploy.sh` now builds and tests before its existing deployment operations. `.github/workflows/validate-pr.yml` runs generation, both test suites and a committed-output check on pull requests with read-only permissions. It performs no deployment. The existing `.github/workflows/deploy.yml.disabled` remains disabled and unchanged; automatic deployment has not been enabled. No deployment was performed in this task.
 
 ## Inventory and evidence
 
@@ -48,7 +48,7 @@ The sitemap is derived from the same project records and contains the homepage p
 - Local HTTP checks: all five canonical routes return 200; slashless forms resolve to canonical directory URLs; nonexistent project returns 404. Run `python3 scripts/check_routes.py` against a local preview to repeat.
 - Production Caddy configuration inspection: static file server without SPA rewrite. Actual deployed behavior has not been rechecked because these changes have not been deployed.
 - Shared color tokens, buttons, tags, cards, focus outlines and responsive breakpoint reused. Detail pages use semantic landmarks and headings, a skip link, wrapping actions and no page JavaScript. Mobile primary navigation retains all three links. Homepage scroll now honors reduced motion explicitly.
-- Visual/mobile browser verification remains unverified: the IDE-provided Chrome DevTools CLI timed out starting its daemon. The skill requires stopping troubleshooting for this undocumented failure; no alternate browser was installed or searched for. CSS inspection alone does not establish absence of visual regressions or a full accessibility audit.
+- The initial implementation could not complete browser checks because the IDE-provided Chrome DevTools daemon timed out. Browser access succeeded during the subsequent PR review; see [PR #4 review](pr-4-review.md) for the completed viewport, interaction and keyboard checks. These checks are not a full accessibility audit.
 
 ## Evidence that would strengthen future revisions
 
