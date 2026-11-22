@@ -71,9 +71,26 @@ a {
   color: var(--text);
 }
 
-.brand {
+.nav .brand {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--panel);
+  color: var(--text);
   font-weight: 800;
-  color: var(--text) !important;
+}
+
+.brand::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: url("assets/kamil_pietka_photo.webp") center / cover no-repeat;
 }
 
 /* HERO */
@@ -661,6 +678,11 @@ a:focus-visible {
 }
 
 @media (max-width: 520px) {
+  .nav .brand {
+    width: 40px;
+    height: 40px;
+  }
+
   .nav nav a:nth-child(2) {
     display: none;
   }
@@ -746,4 +768,19 @@ a:focus-visible {
 @media (max-width: 760px) { .case-study { padding-top: 36px; padding-bottom: 64px; } }
 @media (max-width: 520px) {
   .case-page .nav nav a:nth-child(2) { display: inline; }
+}
+
+#analytics-consent button {
+  background: transparent;
+  font: inherit;
+  color: var(--text);
+  cursor: pointer;
+}
+
+#analytics-options {
+  max-width: 22rem;
+}
+
+#analytics-options button {
+  margin-bottom: .5rem;
 }

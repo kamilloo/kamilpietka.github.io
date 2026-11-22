@@ -25,6 +25,20 @@ class Document(HTMLParser):
         return [a for t, a in self.tags if t == tag and all(a.get(k) == v for k, v in attrs.items())]
 
 class SiteTests(unittest.TestCase):
+    def test_shared_analytics_on_every_generated_page(self):
+        config = json.loads((ROOT / 'content/analytics.json').read_text())
+        pages = [(PUBLIC / 'index.html', '')]
+        pages.extend((PUBLIC / 'projects' / p['route'] / 'index.html', p['slug']) for p in PROJECTS)
+        for path, slug in pages:
+            with self.subTest(path=path):
+                source = path.read_text()
+                doc = Document(source)
+                self.assertEqual(len(doc.find('script', src='/analytics.js', defer=None)), 1)
+                self.assertEqual(len(doc.find('div', id='analytics-consent', hidden=None, **{
+                    'data-measurement-id': config['measurement_id'], 'data-project': slug
+                })), 1)
+                self.assertNotIn('googletagmanager.com', source)
+
     def test_pages_metadata_and_schema(self):
         titles, descriptions = set(), set()
         for project in PROJECTS:
