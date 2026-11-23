@@ -34,9 +34,19 @@ class SiteTests(unittest.TestCase):
                 source = path.read_text()
                 doc = Document(source)
                 self.assertEqual(len(doc.find('script', src='/analytics.js', defer=None)), 1)
-                self.assertEqual(len(doc.find('div', id='analytics-consent', hidden=None, **{
+                self.assertEqual(len(doc.find('section', id='analytics-consent', hidden=None, **{
                     'data-measurement-id': config['measurement_id'], 'data-project': slug
                 })), 1)
+                self.assertEqual(len(doc.find('section', **{
+                    'aria-labelledby': 'analytics-title', 'aria-describedby': 'analytics-description'
+                })), 1)
+                footer, _, after_footer = source.partition('</footer>')
+                self.assertIn('id="analytics-settings"', footer)
+                self.assertIn('id="analytics-consent"', after_footer)
+                self.assertIn('Help me improve this portfolio', after_footer)
+                for choice, label in [('granted', 'Accept analytics'), ('denied', 'Reject analytics')]:
+                    self.assertEqual(len(doc.find('button', type='button', **{'data-analytics-choice': choice})), 1)
+                    self.assertIn(label, after_footer)
                 self.assertNotIn('googletagmanager.com', source)
 
     def test_pages_metadata_and_schema(self):

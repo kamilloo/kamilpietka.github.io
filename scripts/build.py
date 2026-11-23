@@ -20,6 +20,7 @@ def build():
     measurement_id = json.loads((ROOT / 'content/analytics.json').read_text())['measurement_id']
     if not isinstance(measurement_id, str) or (measurement_id and not re.fullmatch(r'G-[A-Z0-9]+', measurement_id)):
         raise ValueError('Set measurement_id in content/analytics.json to a GA4 Measurement ID or an empty string.')
+    analytics_settings = (ROOT / 'templates/analytics-settings.html').read_text().strip()
     analytics = Template((ROOT / 'templates/analytics.html').read_text())
 
     projects = json.loads((ROOT / 'content/projects.json').read_text())
@@ -28,7 +29,9 @@ def build():
     for p in projects:
         for key in ('title', 'category', 'summary'):
             home = home.replace('{{' + p['slug'] + '.' + key + '}}', escape(p[key]))
-    (ROOT / 'public/index.html').write_text(home.replace('{{analytics}}', analytics.substitute(measurement_id=measurement_id, project='').strip()))
+    home = home.replace('{{analytics_settings}}', analytics_settings)
+    home = home.replace('{{analytics}}', analytics.substitute(measurement_id=measurement_id, project='').strip())
+    (ROOT / 'public/index.html').write_text(home)
     template = Template((ROOT / 'templates/case-study.html').read_text())
     for i, p in enumerate(projects):
         url = BASE + project_path(p)
@@ -42,6 +45,7 @@ def build():
         related = ''.join(f'<article class="strength-card"><h3><a href="{project_path(by_slug[slug])}">{escape(by_slug[slug]["title"])}</a></h3><p>{escape(by_slug[slug]["category"])}</p></article>' for slug in p['related'])
         next_p = projects[(i + 1) % len(projects)]
         values = dict(title=escape(p['title']), seo_title=escape(p['seo']['title']), description=escape(p['seo']['description'], quote=True), url=url, category=escape(p['category']), summary=escape(p['summary']), tags=''.join(f'<span>{escape(t)}</span>' for t in p['technologies']), links=links(p['links'], True), sections=sections, sources=links(p['sources']), related=related, next_url=project_path(next_p), next_title=escape(next_p['title']), structured_data=json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False).replace('<', '\\u003c'))
+        values['analytics_settings'] = analytics_settings
         values['analytics'] = analytics.substitute(measurement_id=measurement_id, project=escape(p['slug'], quote=True)).strip()
         destination = ROOT / 'public' / project_path(p).strip('/') / 'index.html'
         destination.parent.mkdir(parents=True, exist_ok=True)

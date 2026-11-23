@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Vouchers — Backend Architecture Case Study | Kamil Piętka</title>
   <meta name="description" content="Explore the architecture, API design, data validation, automated testing and deployment decisions behind the Vouchers application.">
   <link rel="canonical" href="https://kamilpietka.dev/projects/vouchers/">
@@ -60,15 +60,25 @@
   </nav>
 </main>
 <footer class="wrap footer"><p>© 2026 Kamil Piętka</p><a href="https://github.com/kamilloo">github.com/kamilloo ↗</a>
-<div id="analytics-consent" data-measurement-id="G-L84C320RT0" data-project="vouchers" hidden>
-  <button class="button" id="analytics-settings" type="button" aria-controls="analytics-options" aria-expanded="false">Analytics settings</button>
-  <div id="analytics-options" role="group" aria-label="Analytics cookie choices" hidden>
-    <p>Allow Google Analytics cookies to measure visits and link clicks?</p>
+<button class="button" id="analytics-settings" type="button" aria-controls="analytics-consent" aria-expanded="false" hidden>Analytics settings</button>
+</footer>
+
+<section id="analytics-consent" class="consent-banner" aria-labelledby="analytics-title" aria-describedby="analytics-description" data-measurement-id="G-L84C320RT0" data-project="vouchers" hidden>
+  <div class="consent-banner__message">
+    <svg class="consent-banner__icon" aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
+      <path d="m9 12 2 2 4-4"/>
+    </svg>
+    <div>
+      <h2 id="analytics-title" tabindex="-1">Help me improve this portfolio</h2>
+      <p id="analytics-description">I use Google Analytics cookies to see which projects visitors find useful. Your choice is optional, and you can change it anytime.</p>
+    </div>
+  </div>
+  <div class="consent-banner__actions">
     <button class="button" type="button" data-analytics-choice="granted">Accept analytics</button>
     <button class="button" type="button" data-analytics-choice="denied">Reject analytics</button>
   </div>
-</div>
+</section>
 <script src="/analytics.js" defer></script>
-</footer>
 </body>
 </html>
