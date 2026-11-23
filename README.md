@@ -101,6 +101,8 @@ Caddy
    |
    v
 Static portfolio site
+```
+
 ## Case study pages
 
 Project content lives in `content/projects.json`; shared templates generate complete static HTML and the sitemap. Keep generated `public/` files committed for deployment.
@@ -112,3 +114,7 @@ node --test tests/portfolio.test.cjs
 ```
 
 See [case study maintenance, inventory and verification](docs/case-studies.md) for evidence sources, routing, adding projects and remaining limitations.
+
+## Moja Biblioteka
+
+The marketing site and Safari application use a separate Caddy document root. See the [build, staging and rollback guide](docs/task35-mojabiblioteka.md) and the [legal review](docs/task35-legal-review.md).
