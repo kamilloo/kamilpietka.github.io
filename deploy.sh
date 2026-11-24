@@ -27,10 +27,9 @@ SSH_OPTS=(
   -o BatchMode=yes
 )
 
-ssh "${SSH_OPTS[@]}" \
-  "$VPS_USER@$VPS_HOST" \
-  "rm -rf /opt/portfolio/site/*"
-
-scp "${SSH_OPTS[@]}" -r \
+# The separate Moja Biblioteka vhost mounts /opt/portfolio/mojabiblioteka.
+# Preserve server-managed files in the portfolio root and stage transfers before updates.
+rsync -az --delay-updates \
+  -e "$(printf '%q ' ssh "${SSH_OPTS[@]}")" \
   public/. \
   "$VPS_USER@$VPS_HOST:/opt/portfolio/site/"
