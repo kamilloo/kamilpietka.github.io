@@ -47,7 +47,7 @@ The target directory must be new. It contains the complete document root and `re
 
 ## Authorized activation and rollback
 
-Portfolio publication remains independent. `deploy.sh` targets only `/opt/portfolio/site/` and stages rsync updates without deleting unrelated content. Use the following procedure for the Moja Biblioteka vhost after the owner authorizes staging or production work.
+Portfolio publication remains independent. `deploy.sh` clears the contents of `/opt/portfolio/site/` and uploads the rebuilt portfolio with SCP. Moja Biblioteka uses the separate `/opt/portfolio/mojabiblioteka/` document root. Use the following procedure for the Moja Biblioteka vhost after the owner authorizes staging or production work.
 
 1. Build and verify the full release locally. In the approved HTTPS staging vhost, verify MIME types, camera permissions, scope, cache update and the physical-device gate before selecting a production release.
 2. On the VPS, run `docker compose config` and inspect the Caddy container mounts. Confirm `/opt/portfolio/mojabiblioteka` is the live source. Coordinate a single deployment and create a candidate directory next to it on the same filesystem. Copy the current site's contents into the candidate first so server-managed files survive. Upload the new release into the candidate, with the old candidate `app/` moved outside the candidate before copying the new complete `app/`. Verify the candidate against the release, including `release.json`, file counts, paths and checksums. Keep incomplete uploads outside the live document root.
